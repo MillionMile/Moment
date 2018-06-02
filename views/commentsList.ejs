@@ -60,7 +60,7 @@
         <p>【姓名】{{= name }}</p>
         <p>【留言】{{= content }}</p>
         <p>【时间】{{= date }}</p>
-        <p><a href="/commentList?Picture_id={{=Picture_id}}&action=delete&id={{=id}}" class="delete">删除</a></p>
+        <p><a href="/commentsList?Picture_id={{=Picture_id}}&action=delete&id={{=id}}" class="delete">删除</a></p>
     </div>
 </script>
 
@@ -74,7 +74,7 @@
     getData(0);
 
     //Ajax获取分页条
-    $.get("/commentList?Picture_id=<%=Picture_id%>&action=count", function (result) {
+    $.get("/commentsList?Picture_id=<%=Picture_id%>&action=count", function (result) {
         let amount = parseInt(result.result);
         //总页数
         pageamount = Math.ceil(amount / 5);
@@ -92,7 +92,7 @@
 
     //Ajax请求数据
     function getData(page) {
-        $.get("/commentList?Picture_id=<%=Picture_id%>&action=find&page=" + (page), function (result) {
+        $.get("/commentsList?Picture_id=<%=Picture_id%>&action=find&page=" + (page), function (result) {
             //模板函数
             var compiled = _.template($("#template").html());
             //清空全部留言中的所有节点
@@ -116,8 +116,7 @@
     $("#submit").click(function () {
         $("#fail").hide();
         $("#sucesss").hide();
-        $.post("/commentList", {
-            "user_id": "5b053a6cfdd9553110a13b8b",//此处以后用session模块替换
+        $.post("/commentsList", {
             "picture_id":"<%=Picture_id%>",
             "content": $("#content").val()
         }, function (result) {
@@ -127,7 +126,7 @@
                 //提交成功
                 $("#success").fadeIn();
                 //重新加载数据
-                getData(1);
+                getData(0);
             }
         });
     });

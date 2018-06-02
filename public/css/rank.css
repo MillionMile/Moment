@@ -1,0 +1,25 @@
+#picturgroup {
+	text-align: center;
+	margin-top: 5em;
+	padding: 2em 1em;
+}
+
+#bigtitile {
+	color: rgb(255, 89, 119);
+}
+
+.titleNum {
+	font-weight: bolder;
+	font-size: 2.5em;
+	color: rgb(120, 186, 249);
+}
+
+.big_picture {
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+.axin_icon {
+	position: absolute;
+	/*left: 0;*/
+}

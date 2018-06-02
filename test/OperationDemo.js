@@ -179,7 +179,7 @@ const userDao=require("../dao/userDao.js");
 // })
 
 // //方法10
-operationDao.OperationsAllDeleteByPicture("5b0a717babeaa124d8d554df",(err,res)=>{
+operationDao.OperationsAllDeleteByPicture("5b07fd6862c56434d0154537",(err,res)=>{
         if(err)
         console.log(err);
         else

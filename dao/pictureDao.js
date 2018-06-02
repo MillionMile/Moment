@@ -19,5 +19,8 @@ PictureSchema.statics.AbstractUpdate=function(picture_id,update,cb){
 PictureSchema.statics.FindByTagNAbstract=function(picture_id,like,cb){
     this.find( {$or : [{title:like},{tag : like},{abstract :like}]},cb);
 }
-
+//3.遍历所有图片
+PictureSchema.statics.Pictures=function (cb) {
+    this.find(cb);
+}
 module.exports=mongoose.model('Picture',PictureSchema);

@@ -24,8 +24,8 @@ module.exports=function () {
           case "delete"://删除评论(_id)
               let id=req.query.id
               operationDao.remove({_id:id},(err,result)=>{
-                  // console.log(result);
-                  res.redirect("/commentList?Picture_id="+Picture_id);
+                  console.log(result);
+                  res.redirect("/commentsList?Picture_id="+Picture_id);
               });
               break;
           case "count"://获得评论总数（Picture_id，operations）
@@ -35,7 +35,7 @@ module.exports=function () {
               });
               break;
           default://加载默认模板
-                  res.render("commentList",
+                  res.render("commentsList",
                   {
                       Picture_id:Picture_id,
                   });
@@ -43,7 +43,7 @@ module.exports=function () {
       }
    });
     router.post('/',(req,res)=>{
-        let user_id = req.body.user_id;
+        let user_id = req.session['user_id'];
         let picture_id=req.body.picture_id;
         let content=req.body.content;
         operationDao.PictureComment(user_id,picture_id,content,(err,result)=>{
