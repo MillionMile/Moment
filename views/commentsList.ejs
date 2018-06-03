@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>全部留言</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <style type="text/css">
+        #success, #fail {
+            display: none;
+        }
+
+        .comment {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1><%=Picture_id%>图片的全部留言</h1>
+    <br>
+    <div class="row">
+        <form class="form-horizontal col-lg-6">
+            <div class="form-group">
+                <label for="content" class="col-sm-2 control-label">留言</label>
+
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="3" name="content" id="content"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button id="submit" type="button" class="btn btn-success">提交</button>
+                </div>
+            </div>
+            <div class="alert alert-success" role="alert" id="success">
+                <a href="#" class="alert-link">评论提交成功</a>
+            </div>
+            <div class="alert alert-danger" role="alert" id="fail">
+                <a href="#" class="alert-link">评论提交失败</a>
+            </div>
+        </form>
+    </div>
+    <nav>
+        <ul class="pagination">
+
+        </ul>
+    </nav>
+    <div id="comments">
+
+    </div>
+</div>
+
+<script type="text/template" id="template">
+    <div class="comment">
+        <p>【姓名】{{= name }}</p>
+        <p>【留言】{{= content }}</p>
+        <p>【时间】{{= date }}</p>
+        <p><a href="/commentsList?Picture_id={{=Picture_id}}&action=delete&id={{=id}}" class="delete">删除</a></p>
+    </div>
+</script>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/underscore-noflect.js"></script>
+
+<script type="text/javascript">
+
+    //默认请求第一页数据
+    getData(0);
+
+    //Ajax获取分页条
+    $.get("/commentsList?Picture_id=<%=Picture_id%>&action=count", function (result) {
+        let amount = parseInt(result.result);
+        //总页数
+        pageamount = Math.ceil(amount / 5);
+        for (let i = 1; i <= pageamount; i++) {
+            $(".pagination").append("<li><a href='javascript:void(0);'>" + i + "</a></li>");
+        }
+        $(".pagination li:first").addClass("active");
+        //监听
+        $(".pagination li").click(function () {
+            let page = $(this).index();
+            getData(page);
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+    })
+
+    //Ajax请求数据
+    function getData(page) {
+        $.get("/commentsList?Picture_id=<%=Picture_id%>&action=find&page=" + (page), function (result) {
+            //模板函数
+            var compiled = _.template($("#template").html());
+            //清空全部留言中的所有节点
+            $("#comments").html("");
+            for (var i = 0; i < result.length; i++) {
+                //数据绑定
+                var html = compiled({
+                    content: result[i].comment.content,
+                    name: result[i].user_id.username,
+                    date: result[i].date,
+                    Picture_id:"<%=Picture_id%>",
+                    id: result[i]._id,
+                });
+                //DOM操作，添加节点
+                $("#comments").append($(html));
+            }
+        });
+    }
+
+    //Ajax提交表单
+    $("#submit").click(function () {
+        $("#fail").hide();
+        $("#sucesss").hide();
+        $.post("/commentsList", {
+            "picture_id":"<%=Picture_id%>",
+            "content": $("#content").val()
+        }, function (result) {
+            if (result.result == -1) {
+                $("#fail").fadeIn();
+            } else if (result.result == 1) {
+                //提交成功
+                $("#success").fadeIn();
+                //重新加载数据
+                getData(0);
+            }
+        });
+    });
+</script>
+</body>
+</html>
