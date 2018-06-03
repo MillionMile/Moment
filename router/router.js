@@ -11,7 +11,7 @@ module.exports = function () {
 
     router.use(function (req, res, next) {
         //模拟登录session
-        req.session.user_id = "5b04375510fe443358c0cf63";
+        req.session.user_id = "5b12287a9217ec0c481447b5";
 
         // if (!req.session['user_id'] && req.url !== '/login') {
         //     res.redirect('/xxxxx');//到时再写

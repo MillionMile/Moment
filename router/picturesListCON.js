@@ -41,7 +41,6 @@ function checkVote(user_id, picture, cb) {
     operationDao.OperationsCount({ user_id: user_id }, picture, { vote: { $exists: true } }, (err, res) => {
         if (err) {
             cb(0);
-            console.log("查找失败", err);
         }
         else {
             cb(res);
