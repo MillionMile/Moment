@@ -1,0 +1,140 @@
+﻿*{
+	margin: 0;
+	padding: 0;
+}
+body{
+    background: url(../img/xuehua.png)
+}
+header{
+	width: 100%;
+	height: 600px;
+    z-index:1;
+}
+header>div{
+	margin: 0 auto;
+   	height:540px;
+   	width: 1240px;
+}
+header>div>img{
+	height:540px;
+   	width: 1240px;
+   	z-index:1;
+}
+
+.banner {
+	width:1240px;
+	height:540px;
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+}
+.long {
+	width:3720px;
+	font-size:0;
+	position:absolute;
+	left:0;
+	-webkit-animation:banner 10s infinite;
+}
+@-webkit-keyframes banner {
+	0%,33% {
+	left:0;
+	}
+	33%,66% {
+	left:-1240px;
+	}
+	66%,100% {
+	left:-2480px;
+	}
+}
+#homesearch{
+	position: absolute;
+	background-color: rgba(255,255,255,0.4);
+	border: 2px rgba(44,64,168,0.6) solid;
+	color: white;
+	font-family: "微软雅黑";
+	z-index: 200;
+	margin-top:280px;
+	margin-left: 200px;
+	width: 720px;
+	height: 40px;
+}
+#homesearchbuttun{
+	position: absolute;
+	cursor: pointer;
+	z-index: 200;
+	margin-top:280px;
+	margin-left:950px;
+	font-weight: 600;
+	background-color: #46B2E0;
+	border: 2px solid #46B2E0;
+	width: 84px;
+	height: 44px;
+}
+#homesearchbuttun:hover{
+	background-color: #E8565F;
+	border: 2px solid #E8565F;
+}
+#tansuofaxian{
+	position: absolute;
+	z-index: 200;
+	width: 250px;
+	height: 42px;
+	background-color: #78BAF9;
+	border-radius: 46px;
+	color: white;
+	font-size: 1.3em;
+	margin-top: 220px;
+	margin-left: 650px;
+	-webkit-animation:tansuo 5s infinite;
+	padding: 0.3em 0;
+	box-sizing: border-box;
+}
+@keyframes tansuo{
+	0%{
+	transform:scale(1.0,1.0);
+	}
+	50%{
+		transform:scale(1.2,1.2);
+	}
+	100% {
+		transform:scale(1.0,1.0);
+	}
+}
+#Moment{
+	position: absolute;
+	z-index: 200;
+	width: 284px;
+	height: 102px;
+	background-color: #78BAF9;
+	border-radius: 12px;
+	color: white;
+	font-family: "微软雅黑";
+	font-size: 64px;
+	padding-top: 6px;
+	transform:rotate(354deg);
+	margin-top: 80px;
+	margin-left: 220px;
+	animation-iteration-count:1;
+	-webkit-animation:Moment 2s;
+}
+@keyframes Moment{
+	from{
+	opacity: 0;
+	}
+	to{
+	opacity: 100;	
+	}
+}
+
+div i strong{
+	display: inline-block;
+	margin-left: 22px;
+	margin-top: 4px;
+}
+#main-inform{
+	background-color: white;
+	opacity:0.8;
+	height: 1240px;
+	width: 1240px;
+}
+

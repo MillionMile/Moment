@@ -21,6 +21,11 @@
 				display: block;
 				clear: both;
 			}
+
+			.user_pinglun_div_left div,
+			.user_pinglun_div_right div{
+				display: inline-block;
+			}
 			
 			.pinglunzuo_icon {
 				float: left;
@@ -40,8 +45,8 @@
 				border-radius: 5px;
 				color: #fff;
 				padding: 0 1em;
+				max-width:28em;
 			}
-			
 			.user_pinglun_div_right .pinglun {
 				margin: 0.5em -0.5em 0;
 			}
