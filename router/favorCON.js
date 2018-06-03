@@ -77,7 +77,7 @@ module.exports=function () {
             picture: picture_id,
             favor:{$exists:true},
         }, (err, result) => {
-            console.log(result);
+            // console.log(result);
             res.send({"result":1});
         });
     });
