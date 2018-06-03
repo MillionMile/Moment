@@ -8,11 +8,7 @@ module.exports=function () {
         let picture_id = req.query.Picture_id;
         let user_id = req.session['user_id'];
 
-        operationDao.create({
-            user_id: user_id,
-            picture: picture_id,
-            vote: {},
-        }, (err, res) => {
+        operationDao.PictureVote(user_id,picture_id,(err, res) => {
         });
     });
 

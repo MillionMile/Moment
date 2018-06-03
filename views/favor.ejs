@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>图片收藏</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <style type="text/css">
+        #success, #fail, #favor-success, #favor-fail{
+            display: none;
+        }
+        .row{
+            margin-bottom: 10px
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1><%=Picture_id%>图片收藏操作</h1>
+    <br>
+    <div class="row">
+            <h4><label class="control-label">添加新文件夹</label></h4>
+            <form class="form-horizontal col-lg-6">
+                <div class="form-inline" >
+                    <label for="folderName" class="control-label">文件夹名字</label>
+                    <input type="text" name="folderName" id="folderName"  class="form-control"/>
+                    <input type="text" style="display:none" value="防止Enter触发提交" />
+                    <button id="submit" type="button" class="btn btn-success">提交</button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <h4><label class="control-label">请选择收藏文件夹</label></h4>
+            <form class="form-horizontal col-lg-6">
+            <div class="form-inline" id="isFolder">
+            </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="alert alert-success" role="alert" id="success">
+                <a href="#" class="alert-link">文件夹创建成功</a>
+            </div>
+            <div class="alert alert-success" role="alert" id="favor-success">
+                <a href="#" class="alert-link">图片收藏成功</a>
+            </div>
+            <div class="alert alert-danger" role="alert" id="fail">
+                <a href="#" class="alert-link">文件夹创建失败</a>
+            </div>
+            <div class="alert alert-danger" role="alert" id="favor-fail">
+                <a href="#" class="alert-link">此图片已存在您收藏文件中</a>
+            </div>
+    </div>
+
+    <div id="comments">
+
+    </div>
+</div>
+
+<script type="text/template" id="template">
+    <option value="{{=id}}">{{=folder_name}}</option>
+</script>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/underscore-noflect.js"></script>
+
+<script type="text/javascript">
+    getData();
+
+    //Ajax请求数据
+    function getData() {
+        $.get("/picturesList/GetFavorFolders",(result)=>{
+            //模板函数
+            let compiled = _.template($("#template").html());
+            //清空全部留言中的所有节点
+            $("#isFolder").html("<select name=\"folder_id\" class=\"form-control\" id=\"folders\"></select> " +
+                "<button id=\"favor\" type=\"button\" class=\"btn btn-success\" onClick=\"doFavor();\">收藏</button>");
+            $("#folders").html("");
+            let le=result.length;
+            if(le>0){
+            for (let i = 0; i < le; i++) {
+                //数据绑定
+                let html = compiled({
+                    folder_name:result[i].folder_name,
+                    id:result[i]._id,
+                });
+                //DOM操作，添加节点
+                $("#folders").append($(html));
+            }
+            }
+            else{
+                let html="<h3>你还没有收藏文件夹</h3>"
+                $("#isFolder").html("");
+                $("#isFolder").append($(html));
+            }
+        });
+    }
+
+    //Ajax提交表单
+    $("#submit").click(()=>{
+        $("#fail").hide();
+        $("#success").hide();
+        $("#favor-fail").hide();
+        $("#favor-success").hide();
+        $.post("/favor/addFavor",{
+            "folderName":$("#folderName").val()
+        },(result)=>{
+            if (result.result === -1) {
+                $("#fail").fadeIn();
+            } else if (result.result === 1) {
+                //提交成功
+                $("#success").fadeIn();
+                //重新加载模板
+                getData()
+            }
+        });
+    })
+
+    //Ajax提交下拉列表
+    function doFavor(){
+        $("#fail").hide();
+        $("#success").hide();
+        $("#favor-fail").hide();
+        $("#favor-success").hide();
+        $.post("/favor/doFavor",{
+            "folder_id":$("#folders").val(),
+            "Picture_id":"<%=Picture_id%>",
+        },(result)=>{
+            if (result.result === -1) {
+                $("#favor-fail").fadeIn();
+            } else if (result.result === 1) {
+                //提交成功
+                $("#favor-success").fadeIn();
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

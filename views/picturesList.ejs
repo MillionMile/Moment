@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>图片列表</title>
+    <title>热门图片</title>
     <link rel="stylesheet" type="text/css" href="../css/share.css" />
     <style type="text/css">
         #bigicon {
@@ -24,12 +24,12 @@
         <%for(var i=0;i<list.length;i++){%>
         <div class="fangxiandiv">
             <div class="fangxiandiv_div">
-                <%if(list[i].isFavor>=1){%>
+                <%if(list[i].isVote>=1){%>
                 <img src="../img/faxian/hongxin.png" class="xin_icon" />
                 <%}else{%>
                 <img src="../img/faxian/xin.png" class="xin_icon" />
                 <%}%>
-                <a href="">
+                <a href="/commentsList?Picture_id=<%=list[i]._id%>">
                     <img src="../img/faxian/samplepicture.png" class="picture" />
                 </a>
                 <a href="/commentsList?Picture_id=<%=list[i]._id%>" class="picture_tag">
@@ -37,7 +37,11 @@
                 </a>
                 <div>
                     <img src="../img/faxian/user_icon.png" class="user_icon" />
-                    <img src="../img/faxian/zhuanfa.png" class="zhuanfa_icon" />
+                    <%if(list[i].isFavor>=1){%>
+                    <img src="../img/faxian/remove_favor_icon.png" class="zhuanfa_icon" />
+                    <%}else{%>
+                    <img src="../img/faxian/favor_icon.png" class="zhuanfa_icon" />
+                    <%}%>
                 </div>
             </div>
             <input type="hidden" value="<%=list[i]._id%>" class="pic_id">
@@ -60,7 +64,7 @@
     $('.xin_icon').click(function () {
         let index = $('.xin_icon').index($(this));
         let pic = $('.pic_id:eq(' + index + ')').val();
-        if ($(this).attr('src') == "../img/faxian/xin.png") {
+        if ($(this).attr('src') ==="../img/faxian/xin.png") {
             $(this).attr('src', "../img/faxian/hongxin.png");
             $.get("/vote/addVote?Picture_id=" + pic, (result)=>{
             });
@@ -71,6 +75,18 @@
         }
     });
 
+    $('.zhuanfa_icon').click(function () {
+        let index = $('.zhuanfa_icon').index($(this));
+        let pic = $('.pic_id:eq(' + index + ')').val();
+        if ($(this).attr('src') === "../img/faxian/favor_icon.png") {
+            $(this).attr('src', "../img/faxian/favor_icon.png");
+            $(location).attr('href', '/favor?Picture_id='+pic);
+        } else {
+            $(this).attr('src', "../img/faxian/favor_icon.png");
+            $.get("/favor/delFavor?Picture_id=" + pic,(result)=>{
+            });
+        }
+    });
 </script>
 
 </html>

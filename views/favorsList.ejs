@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>收藏列表</title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/share.css" />
+    <style type="text/css">
+        #picturgroup{
+            margin-bottom: 5px ; margin-top: 10px
+        }
+        #picturgroup form{
+            padding-bottom: 2px
+        }
+        #picturgroup form .form-inline{
+            padding-bottom: 20px
+        }
+        h3{
+            padding-top:5px;padding-bottom: 3px
+        }
+        #success, #fail {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<div id="main">
+    <div id="picturgroup">
+        <h3><label class="control-label">添加新文件夹</label></h3>
+            <form class="form-horizontal">
+                <div class="form-inline">
+                    <label for="folderName" class="control-label">文件夹名字</label>
+                     <input type="text" name="folderName" id="folderName" style="width:15%" class="form-control"/>
+                    <input type="text" style="display:none" value="防止Enter触发提交" />
+                    <button id="submit" type="button" class="btn btn-success">提交</button>
+                </div>
+                <div class="alert alert-success" role="alert" id="success">
+                    <a href="#" class="alert-link">文件夹创建成功</a>
+                </div>
+                <div class="alert alert-danger" role="alert" id="fail">
+                    <a href="#" class="alert-link">文件夹创建失败</a>
+                </div>
+            </form>
+    </div>
+    <div id="picturgroup" class="folders">
+
+    </div>
+</div>
+</body>
+
+<script type="text/template" id="template">
+    <div class="fangxiandiv">
+        <div class="fangxiandiv_div">
+            <a href='javascript:deleteFolder("{{=id}}");'>
+            <img src="../img/faxian/x_icon.png" class="x_icon" />
+            </a>
+            <a href='/picturesList/PicInFolder?folder_id={{=id}}'>
+            <img src="../img/faxian/folder.png" class="picture" />
+            </a>
+            <a href='/picturesList/PicInFolder?folder_id={{=id}}'  class="picture_tag">
+            {{= folder_name}}
+            </a>
+        </div>
+    </div>
+</script>
+
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/underscore-noflect.js"></script>
+
+<script type="text/javascript">
+    getData();
+
+    //Ajax请求数据
+    function getData() {
+        $.get("/picturesList/GetFavorFolders",(result)=>{
+            //模板函数
+            let compiled = _.template($("#template").html());
+            //清空全部留言中的所有节点
+            $(".folders").html("");
+            for (let i = 0; i < result.length; i++) {
+                //数据绑定
+                let html = compiled({
+                    folder_name:result[i].folder_name,
+                    id:result[i]._id,
+                });
+                //DOM操作，添加节点
+                $(".folders").append($(html));
+            }
+        });
+    }
+
+    //Ajax删除文档
+    function deleteFolder(folder_id) {
+        $.get("/favor/deleteFolder?folder_id="+folder_id,(result)=>{
+            if (result.result == 1)
+                getData();
+        });
+    }
+
+
+    //Ajax提交表单
+    $("#submit").click(()=>{
+        $("#fail").hide();
+        $("#success").hide();
+        $.post("/favor/addFavor",{
+           "folderName":$("#folderName").val()
+        },(result)=>{
+            if (result.result == -1) {
+                $("#fail").fadeIn();
+            } else if (result.result == 1) {
+                //提交成功
+                $("#success").fadeIn();
+                //重新加载模板
+                getData()
+            }
+        });
+    })
+</script>
+
+</html>

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,7 +59,9 @@
         <p>【姓名】{{= name }}</p>
         <p>【留言】{{= content }}</p>
         <p>【时间】{{= date }}</p>
+        {{if(login=="1"&&(username===name)){ }}
         <p><a href="/commentsList?Picture_id={{=Picture_id}}&action=delete&id={{=id}}" class="delete">删除</a></p>
+        {{ } }}
     </div>
 </script>
 
@@ -94,17 +95,19 @@
     function getData(page) {
         $.get("/commentsList?Picture_id=<%=Picture_id%>&action=find&page=" + (page), function (result) {
             //模板函数
-            var compiled = _.template($("#template").html());
+            let compiled = _.template($("#template").html());
             //清空全部留言中的所有节点
             $("#comments").html("");
-            for (var i = 0; i < result.length; i++) {
+            for (let i = 0; i < result.length; i++) {
                 //数据绑定
-                var html = compiled({
+                let html = compiled({
                     content: result[i].comment.content,
                     name: result[i].user_id.username,
                     date: result[i].date,
                     Picture_id:"<%=Picture_id%>",
                     id: result[i]._id,
+                    login:"<%=login%>",
+                    username:"<%=username%>",
                 });
                 //DOM操作，添加节点
                 $("#comments").append($(html));
@@ -115,7 +118,7 @@
     //Ajax提交表单
     $("#submit").click(function () {
         $("#fail").hide();
-        $("#sucesss").hide();
+        $("#success").hide();
         $.post("/commentsList", {
             "picture_id":"<%=Picture_id%>",
             "content": $("#content").val()

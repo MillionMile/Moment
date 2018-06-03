@@ -15,7 +15,7 @@ module.exports=function () {
       switch (req.query.action){
           case "find"://获取具体图片的评论列表（Picture_id,page）
               let page=req.query.page;
-              operationDao.CommentsOfPicture(Picture_id,5,page,(err,result)=>{
+              operationDao.CommentsOfPicture(Picture_id,5,page,(err,result)=>{//5条一页
                    //console.log(result);
                    // res.send(result);
                   res.json(result);
@@ -38,6 +38,8 @@ module.exports=function () {
                   res.render("commentsList",
                   {
                       Picture_id:Picture_id,
+                      login:req.session['login'],
+                      username:req.session["username"],
                   });
               break;
       }

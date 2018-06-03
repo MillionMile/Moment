@@ -95,12 +95,12 @@ const folderDao = require('../dao/folderDao')
 // })
 
 //使用静态方法二
-// userDao.findUFoldersById("5b04375510fe443358c0cf63",(err,res)=> {
-//     if (err)
-//         console.log("根据Id查找失败",err);
-//     else
-//         console.log("根据Id查找成功",res);
-//         })
+userDao.findUFoldersById("5b04375510fe443358c0cf63",(err,res)=> {
+    if (err)
+        console.log("根据Id查找失败",err);
+    else
+        console.log("根据Id查找成功",res.folders[0].folder_name);
+        })
 
 //使用静态方法三
 // let folder=new folderDao({folder_name:"folder3"});
