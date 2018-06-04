@@ -2,6 +2,7 @@ const app = require("express");
 const commentCON = require("./commentCON");
 const listCON = require("./picturesListCON");
 const voteCON = require("./voteCON");
+const favorCON = require("./favorCON");
 
 const pictureDao = require("../dao/pictureDao");  //暂时用于显示首页图片，之后可删
 const operationDao = require("../dao/OperationDao.js");//暂时用于显示首页图片，之后可删
@@ -11,8 +12,12 @@ module.exports = function () {
 
     router.use(function (req, res, next) {
         //模拟登录session
-        req.session.user_id = "5b12287a9217ec0c481447b5";
-
+        //     // req.session.user_id = "5b12287a9217ec0c481447b5";
+        // req.session.user_id = "5b1521b8164e8720b4ca4238";
+        // req.session.user_id = "5b1521aef5581d26f8008951";
+        req.session.user_id = "5b1521c1619ed91eb0174f2b";
+        req.session.username = "test2";
+        req.session.login = "1";
         // if (!req.session['user_id'] && req.url !== '/login') {
         //     res.redirect('/xxxxx');//到时再写
         // } else {
@@ -22,6 +27,7 @@ module.exports = function () {
     router.use('/commentsList', commentCON());
     router.use('/picturesList', listCON());
     router.use('/vote', voteCON());
+    router.use('/favor', favorCON());
     router.get('/', function (req, res) {
         // res.redirect('/picturesList/Trending-Pic');
 
@@ -41,7 +47,11 @@ module.exports = function () {
                     data[i].isVote = result;
                     getVoteCountOfPic(data[i]._id, (dataCount) => {
                         data[i].voteCount = dataCount.length;
-                        iterator(i + 1);
+                        operationDao.OperationsCount({ user_id: req.session['user_id'] }, data[i]._id,
+                            { favor: { $exists: true } }, (err, result2) => {
+                                data[i].isFavor = result2;
+                                iterator(i + 1);
+                            });
                     })
                 });
             })(0);

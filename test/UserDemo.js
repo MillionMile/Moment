@@ -1,11 +1,12 @@
 const userDao=require("../dao/userDao.js");
 const folderDao = require('../dao/folderDao')
 
-//写入数据
+// //写入数据
 // userDao.create(
-//     {   username:'test1',
-//         password:"123456",
-//         sex     :"男"
+//     {   username:'mygod',
+//         password:"12333456",
+//         sex     :"男",
+//         avatar:'img/faxian/user_icon.png'
 //     },(err,result)=>{
 //     if(err)
 //         console.log("插入失败",err);

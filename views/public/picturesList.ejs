@@ -28,7 +28,11 @@
                         <span class="pic_title">
                             <%=list[i].title%>
                         </span>
-                        <img src="../img/faxian/zhuanfa.png" class="zhuanfa_icon" />
+                        <%if(list[i].isFavor>=1){%>
+                            <img src="../img/faxian/remove_favor_icon.png" class="zhuanfa_icon" />
+                            <%}else{%>
+                                <img src="../img/faxian/favor_icon.png" class="zhuanfa_icon" />
+                                <%}%>
                     </div>
                 </div>
                 <input type="hidden" value="<%=list[i]._id%>" class="pic_id">
@@ -60,13 +64,26 @@
             $(this).attr('src', "../img/icon/爱心变化.png");
             $.get("/vote/addVote?Picture_id=" + pic, (result) => {
                 $('.zancount:eq(' + index + ')').html(parseInt($('.zancount:eq(' + index + ')').html()) + 1);
-                $('.zancount:eq(' + index + ')').css('color','rgb(229,28,35)');
+                $('.zancount:eq(' + index + ')').css('color', 'rgb(229,28,35)');
             });
         } else {
             $(this).attr('src', "../img/icon/爱心.png");
             $.get("/vote/delVote?Picture_id=" + pic, (result) => {
                 $('.zancount:eq(' + index + ')').html(parseInt($('.zancount:eq(' + index + ')').html()) - 1);
-                $('.zancount:eq(' + index + ')').css('color','white');
+                $('.zancount:eq(' + index + ')').css('color', 'white');
+            });
+        }
+    });
+
+     $('.zhuanfa_icon').click(function () {
+        let index = $('.zhuanfa_icon').index($(this));
+        let pic = $('.pic_id:eq(' + index + ')').val();
+        if ($(this).attr('src') === "../img/faxian/favor_icon.png") {
+            $(this).attr('src', "../img/faxian/favor_icon.png");
+            $(location).attr('href', '/favor?Picture_id='+pic);
+        } else {
+            $(this).attr('src', "../img/faxian/favor_icon.png");
+            $.get("/favor/delFavor?Picture_id=" + pic,(result)=>{
             });
         }
     });

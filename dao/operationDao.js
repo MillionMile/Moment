@@ -41,9 +41,9 @@ OperationSchema.statics.PictureComment=function (user_id,picture_id,content,cb) 
 OperationSchema.statics.OperationsCount=function (user_id,picture_id,operations,cb) {
         this.count({$and:[user_id,{picture:picture_id},operations]},cb);
 }
-//6.遍历某图所有点赞人物
+//6.遍历某图所有点赞人物(时间倒序)
 OperationSchema.statics.UsersOfVote=function(picture_id,cb){
-    this.find({$and:[{picture:picture_id},{vote:{$exists:true}}]},{user_id:1})
+    this.find({$and:[{picture:picture_id},{vote:{$exists:true}}]},{user_id:1}).sort({date:-1})
     .populate('user_id').exec(cb);
 }
 //7.遍历某人某收藏夹的所有图片
