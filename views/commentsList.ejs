@@ -141,20 +141,25 @@
             <script type="text/template" id="template">
                 {{if((num%2)===1) { }}
                 <div class="user_pinglun_div_right">
-                        <img src="img/faxian/user_icon.png" class="user_icon" />
-                        <img src="img/pinglun/pinglunyou.png" class="pinglunyou_icon" />
-                        <div>
-                            <p class="pinglun pinglunyou" style="float:right;margin-right:0;">{{= content }}</p>
-                            <br />
-                            <span class="time_tag">{{= date }}</span>
+                    <img src="img/faxian/user_icon.png" class="user_icon" />
+                    <img src="img/pinglun/pinglunyou.png" class="pinglunyou_icon" />
+                    <div>
+                        <div style="float: right;margin-right: 0 !important;">
+                            <p class="pinglun pinglunyou" >{{= content }}</p>
+                            <div class="delcommentyou">
+                                <a href="#">删除</a>
+                            </div>
                         </div>
+                        <span class="time_tag time_tag_right">{{= date }}</span>
                     </div>
-                    {{ }else{ }}
-                    <div class="user_pinglun_div_left">
-                        <img src="img/faxian/user_icon.png" class="user_icon" />
-                        <img src="img/pinglun/pinglunzuo.png" class="pinglunzuo_icon" />
-                        <div>
-                            <p class="pinglun">{{= content }}</p>
+                </div>
+                {{ }else{ }}
+                <div class="user_pinglun_div_left">
+                    <img src="img/faxian/user_icon.png" class="user_icon" />
+                    <img src="img/pinglun/pinglunzuo.png" class="pinglunzuo_icon" />
+                    <div>
+                        <p class="pinglun">{{= content }}</p>
+                        <a href="#" class="delcommentzuo">删除</a>
                             <br />
                             <span class="time_tag">{{= date }}</span>
                         </div>
