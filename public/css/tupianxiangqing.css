@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 	#pinglun_div {
 				width: 650px;
 				padding: 1em;
@@ -111,3 +112,184 @@
 			#picturgroup{
 				margin-top:5em;
 			}
+=======
+#pinglun_div {
+	width: 650px;
+	padding: 1em;
+	border: rgb(224, 224, 224) solid 2px;
+	height: 32em;
+	overflow: auto;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+			
+.user_pinglun_div_left {
+	float: left;
+}
+
+.user_pinglun_div_right {
+	float: right;
+}
+
+.user_pinglun_div_left,
+.user_pinglun_div_right {
+	margin: 0 0 0.5em 0;
+	display: block;
+	clear: both;
+}
+
+.user_pinglun_div_left div,
+.user_pinglun_div_right div{
+	display: inline-block;
+}
+
+.pinglunzuo_icon {
+	float: left;
+	margin: 0.5em 0;
+}
+.user_icon {
+    float: left;
+    margin: 0.5em;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: #E7E7E7 solid 2px;
+}
+.pinglunyou_icon {
+	float: right;
+	margin: 0.5em 0;
+}
+
+
+.pinglun {
+	margin: 0.5em 0;
+	line-height: 2em;
+	display: inline-block;
+	background: #78BAF9;
+	border-radius: 5px;
+	color: #fff;
+	padding: 0.2em 1em;
+	max-width:28em;
+}
+
+.pinglunyou{
+	float:right;
+	margin-right:0 !important;
+}
+
+.delcommentzuo{
+	font-size:0.8em;
+	vertical-align:bottom;
+	line-height:2.5em;
+	text-decoration:none;
+	display:inline-block;
+}
+.delcommentyou{
+	font-size:0.8em;
+	display:block !important;
+	position:relative;
+	right:2.8em;
+	top:-1.5em;
+	width:2em;
+}
+
+.time_tag_right{
+	margin-top:-1em;
+	clear:both;
+	float: right !important;
+}
+
+.user_pinglun_div_right .pinglun {
+	margin: 0.5em -0.5em 0;
+}
+
+.time_tag {
+	float: left;
+	font-size: 0.8em;
+}
+
+.user_pinglun_div_left .time_tag {
+	margin-right: 1em;
+}
+
+.user_pinglun_div_right .user_icon {
+	float: right;
+}
+
+#pinglunarea {
+	resize : none;
+	display: block;
+	width: 450px;
+	height: 150px;
+	margin: 0 auto;
+	border: rgb(224, 224, 224) solid 2px;
+}
+
+#pinglunqu {
+	background: #fff;
+	border: rgb(224, 224, 224) solid 1px;
+	border-radius: 5px;
+}
+
+#pinglunform {
+	text-align: center;
+}
+
+#pinglunform input[type="submit"] {
+	margin: 0.5em 0;
+	background: #FFFFFF;
+	border-radius: 5px;
+	border: rgb(224, 224, 224) solid 2px;
+	padding: 0.2em 1em;
+}
+
+#picture_info{
+	width:100%;
+}
+
+#picture_title{
+	background:#FFFFFF;
+	border-radius: 5px;
+	border: rgb(224, 224, 224) solid 1px;
+	color:rgb(232,86,95);
+	text-decoration: none;
+	font-size: 1.5em;
+	padding: 0 0.2em;
+	line-height: 30px;
+	display: inline-block;
+}
+
+#zancount{
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+#picturgroup{
+	margin-top:5em;
+}
+
+.vote_user_icon {
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	border: #E7E7E7 solid 2px;
+	position: relative;
+}
+
+#vote_user_icon_0 {
+	left: 0;
+	z-index: 3;
+}
+
+#vote_user_icon_1 {
+	left: -2em;
+	z-index: 2;
+	opacity: 0.9;
+}
+
+#vote_user_icon_2 {
+	left: -4.5em;
+	z-index: 1;
+	opacity: 0.8;
+}
+>>>>>>> pr/2

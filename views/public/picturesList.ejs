@@ -1,0 +1,90 @@
+<link rel="stylesheet" type="text/css" href="css/share.css" />
+<div id="picturgroup">
+    <div id="picturgroup_div">
+        <%for(var i=0;i<list.length;i++){%>
+            <div class="fangxiandiv">
+                <div class="fangxiandiv_div">
+                    <div>
+                        <%if(list[i].isVote>=1){%>
+                            <img src="../img/icon/爱心变化.png" class="xin_icon" />
+                            <span class="zancount">
+                                <%=list[i].voteCount%>
+                            </span>
+                            <%}else{%>
+                                <img src="../img/icon/爱心.png" class="xin_icon" />
+                                <span class="zancount" style="color:white">
+                                    <%=list[i].voteCount%>
+                                </span>
+                                <%}%>
+                    </div>
+                    <a href="/commentsList?Picture_id=<%=list[i]._id%>">
+                        <img src="../img/faxian/samplepicture.png" class="picture" />
+                    </a>
+                    <a href="/commentsList?Picture_id=<%=list[i]._id%>" class="picture_tag">
+                        By 作者
+                    </a>
+                    <div>
+                        <img src="../img/faxian/user_icon.png" class="user_icon" />
+                        <span class="pic_title">
+                            <%=list[i].title%>
+                        </span>
+                        <%if(list[i].isFavor>=1){%>
+                            <img src="../img/faxian/remove_favor_icon.png" class="zhuanfa_icon" />
+                            <%}else{%>
+                                <img src="../img/faxian/favor_icon.png" class="zhuanfa_icon" />
+                                <%}%>
+                    </div>
+                </div>
+                <input type="hidden" value="<%=list[i]._id%>" class="pic_id">
+                <input type="hidden" value="<%=isLogin%>" id="isLogin">
+            </div>
+            <%}%>
+
+                <center>
+                    <div>
+                        <a href="#">
+                            <img src="../img/faxian/shuaxin.png" />
+                        </a>
+                    </div>
+                </center>
+    </div>
+</div>
+
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script>
+    $('.xin_icon').click(function () {
+        let index = $('.xin_icon').index($(this));
+        let pic = $('.pic_id:eq(' + index + ')').val();
+        if ($(this).attr('src') == "../img/icon/爱心.png") {
+            if ($('#isLogin').val() == "false") {
+                alert('登录后才能进行点赞!');
+                return;
+            }
+            // alert(request.getSession());
+            $(this).attr('src', "../img/icon/爱心变化.png");
+            $.get("/vote/addVote?Picture_id=" + pic, (result) => {
+                $('.zancount:eq(' + index + ')').html(parseInt($('.zancount:eq(' + index + ')').html()) + 1);
+                $('.zancount:eq(' + index + ')').css('color', 'rgb(229,28,35)');
+            });
+        } else {
+            $(this).attr('src', "../img/icon/爱心.png");
+            $.get("/vote/delVote?Picture_id=" + pic, (result) => {
+                $('.zancount:eq(' + index + ')').html(parseInt($('.zancount:eq(' + index + ')').html()) - 1);
+                $('.zancount:eq(' + index + ')').css('color', 'white');
+            });
+        }
+    });
+
+     $('.zhuanfa_icon').click(function () {
+        let index = $('.zhuanfa_icon').index($(this));
+        let pic = $('.pic_id:eq(' + index + ')').val();
+        if ($(this).attr('src') === "../img/faxian/favor_icon.png") {
+            $(this).attr('src', "../img/faxian/favor_icon.png");
+            $(location).attr('href', '/favor?Picture_id='+pic);
+        } else {
+            $(this).attr('src', "../img/faxian/favor_icon.png");
+            $.get("/favor/delFavor?Picture_id=" + pic,(result)=>{
+            });
+        }
+    });
+</script>

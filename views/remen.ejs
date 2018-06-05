@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/share.css" />
+	<style type="text/css">
+		#bigicon {
+			width: 1075px;
+			margin: auto;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="main">
+		<div id="bigicon">
+			<center>
+				<img src="img/remen/remen.png">
+			</center>
+		</div>
+		<div id="picturgroup">
+			<%for(var i=0;i<list.length;i++){%>
+				<div class="fangxiandiv">
+					<div class="fangxiandiv_div">
+						<%if(list[i].isFavor>=1){%>
+							<img src="img/faxian/hongxin.png" class="xin_icon" />
+							<%}else{%>
+								<img src="img/faxian/xin.png" class="xin_icon" />
+								<%}%>
+									<a href="">
+										<img src="img/faxian/samplepicture.png" class="picture" />
+									</a>
+									<a href="" class="picture_tag">
+										<%=list[i].title%>
+									</a>
+									<div>
+										<img src="img/faxian/user_icon.png" class="user_icon" />
+										<img src="img/faxian/zhuanfa.png" class="zhuanfa_icon" />
+									</div>
+					</div>
+					<input type="hidden" value="<%=list[i]._id%>" class="pic_id">
+				</div>
+
+				<%}%>
+					<center>
+						<div>
+							<a href="#">
+								<img src="img/faxian/shuaxin.png" />
+							</a>
+						</div>
+					</center>
+		</div>
+	</div>
+</body>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+	$('.xin_icon').click(function () {
+		let index = $('.xin_icon').index($(this));
+		let pic = $('.pic_id:eq(' + index + ')').val();
+		if ($(this).attr('src') == "img/faxian/xin.png") {
+			$(this).attr('src', "img/faxian/hongxin.png");
+			$.get("/vote/addVote?Picture_id=" + pic,{}, (result)=>{
+			},'json');
+		} else {
+			$(this).attr('src', "img/faxian/xin.png");
+			$.get("/vote/delVote?Picture_id=" + pic,{},(result)=>{
+			});
+		}
+	});
+
+</script>
+
+</html>

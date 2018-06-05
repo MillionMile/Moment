@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="/css/sighup.css">
+<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/authority.css">
+<link rel="stylesheet" href="/css/home.css">
+<script src="/js/side.js"></script>
+<div>
+    <nav id="nav_box">
+        <!--导航栏-->
+        <a href="#" onclick="nav_side1()">
+            <span>
+                <img src="/img/icon/折叠.png">
+            </span>
+        </a>
+        <span>
+            <a href="/">
+                <p>首页</p>
+            </a>
+        </span>
+        <span>
+            <a href="#">
+                <p>发现</p>
+            </a>
+        </span>
+        <span>
+            <a href="#">
+                <p>最新</p>
+            </a>
+        </span>
+        <span>
+            <a href="/picturesList/Trending-Pic">
+                <p>热门</p>
+            </a>
+        </span>
+        <span>
+            <a href="#">
+                <p>今日排行</p>
+            </a>
+        </span>
+        <span>
+            <a href="/picturesList/FavorFolders">
+                <p>关于我们</p>
+            </a>
+        </span>
+
+        <a href="#">
+            <div id="signup" onclick="nav_side2()">
+                <p>注册</p>
+            </div>
+        </a>
+        <a href="#">
+            <div id="login" onclick="nav_side1()">
+                <p>登陆</p>
+            </div>
+        </a>
+    </nav>
+
+    <div id="side_login">
+        <!--返回按钮-->
+        <a href="#">
+            <div class="fanhui" onclick="nav_hidden()">
+                <img src="/img/icon/返回.png">
+            </div>
+        </a>
+        <!--头像框-->
+        <div class="touxiangkuang">
+            <img class="touxiang" src="/img/icon/姓名用户名(未注册).png">
+        </div>
+        <form action="">
+            <input type="text" value="" placeholder="请输入您的用户名或邮箱">
+            <input type="password" value="" placeholder="请输入您的密码">
+            <input class="tijiao" type="button" value="提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交">
+            <input class="wangjimima" type="button" value="忘记密码">
+        </form>
+        <br/>
+        <div>
+            <span>
+                <p style="width: 500px;">更多登陆方式</p>
+            </span>
+        </div>
+        <div id="line"></div>
+        <div style="width: 500px;">
+            <div class="yuankuang">
+                <a href="#">
+                    <img src="/img/icon/微信.png">
+                </a>
+            </div>
+            <div class="yuankuang">
+                <a href="#">
+                    <img src="/img/icon/QQ.png">
+                </a>
+            </div>
+            <div class="yuankuang">
+                <a href="#">
+                    <img src="/img/icon/微博.png">
+                </a>
+            </div>
+            <div class="yuankuang">
+                <a href="#">
+                    <img src="/img/icon/推特.png">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="side_signup">
+        <!--返回按钮-->
+        <a href="#">
+            <div class="fanhui" onclick="nav_hidden()">
+                <img src="/img/icon/返回.png">
+            </div>
+        </a>
+        <!--头像框-->
+        <div class="touxiangkuang">
+            <img class="touxiang" src="/img/icon/姓名用户名(未注册).png">
+        </div>
+        <form action="">
+            <input type="text" placeholder="请填写您的用户名">
+            <input type="text" placeholder="请填写您的邮箱">
+            <input type="password" placeholder="请填写您的密码">
+            <input type="password" placeholder="请再次填写您的用户名">
+            <input class="tijiao" type="button" value="注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;册">
+            <input class="wangjimima" type="button" value="返回登陆" onclick="nav_hidden();nav_side1();">
+        </form>
+    </div>
+</div>
+
+<div id="bac-ss" onclick="mybacclick()"></div>
