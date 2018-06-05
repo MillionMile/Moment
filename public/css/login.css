@@ -65,7 +65,7 @@
     background-color: #46B2E0;
     margin-top: 20px;
 }
-#side_login div div div span p,#side_signup div div div span p{
+#side_login div div div span p,#side_login p,#side_signup div div div span p{
     font-size: 14px;
     color: #AAAAAA;
     padding-left: 70px;

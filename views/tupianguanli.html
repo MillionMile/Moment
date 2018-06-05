@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../CSS/share.css" />
+		<link rel="stylesheet" type="text/css" href="../CSS/tupianguanli.css"/>
+		<link rel="stylesheet" href="../CSS/authority.css">
+		<link rel="stylesheet" href="../CSS/login.css">
+		<link rel="stylesheet" href="../CSS/sighup.css">
+		<script src="../JS/side.js"></script>
+	</head>
+
+	<body>
+		 <div>
+        <nav id="nav_box"><!--导航栏-->
+            <a href="#" onclick="nav_side1()"><span><img src="../img/icon/折叠.png"></span></a>
+            <span><a href="home.html"><p>首页</p></span></a>
+            <span><a href="Discover.html"><p>发现</p></a></span></a>
+            <span><a href="FreshNew.html"><p>最新</p></a></span></a>
+            <span><a href="Hot.html"><p>热门</p></a></span></a>
+            <span><a href="rank.html"><p>今日排行</p></a></span></a>
+            <span><a href="#"><p>关于我们</p></a></span></a>
+            <a href="#"><div id="signup" onclick="nav_side2()"><p>注册</p></div></a>
+            <a href="#"><div id="login" onclick="nav_side1()"><p>登陆</p></div></a>
+        </nav>
+
+        <div id="side_login">
+            <!--返回按钮-->
+            <a href="#"><div class="fanhui" onclick="nav_hidden()">
+                <img src="../img/icon/返回.png">
+            </div></a>
+            <!--头像框-->
+            <div class="touxiangkuang">
+                <img class="touxiang" src="../img/icon/姓名用户名(未注册).png">
+            </div>
+            <form action="">
+                <input type="text" value="" placeholder="请输入您的用户名或邮箱">
+                <input type="password" value="" placeholder="请输入您的密码">
+                <input class="tijiao" type="button" value="提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交">
+                <input class="wangjimima" type="button" value="忘记密码">
+            </form><br/>
+            <div><span><p style="width: 500px;">更多登陆方式</p></span></div>
+            <div id="line"></div>
+            <div style="width: 500px;">
+            	<div class="yuankuang"><a href="#"><img src="../img/icon/微信.png"></a></div><div class="yuankuang"><a href="#"><img src="../img/icon/QQ.png"></a></div>
+            <div class="yuankuang"><a href="#"><img src="../img/icon/微博.png"></a></div><div class="yuankuang"><a href="#"><img src="../img/icon/推特.png"></a></div>
+            </div>
+        </div>
+
+        <div id="side_signup">
+            <!--返回按钮-->
+            <a href="#"><div class="fanhui" onclick="nav_hidden()">
+                    <img src="../img/icon/返回.png">
+                </div>
+            </a>
+            <!--头像框-->
+            <div class="touxiangkuang">
+                    <img class="touxiang" src="../img/icon/姓名用户名(未注册).png">
+            </div>
+            <form action="">
+                <input type="text" placeholder="请填写您的用户名">
+                <input type="text" placeholder="请填写您的邮箱">
+                <input type="password" placeholder="请填写您的密码">
+                <input type="password" placeholder="请再次填写您的用户名">
+                <input class="tijiao" type="button" value="注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;册">
+                <input class="wangjimima" type="button" value="返回登陆" onclick="nav_hidden();nav_side1();">
+            </form>   
+        </div>
+    </div>
+    
+		<div id="main">
+			<div id="picturgroup">
+				<h2>上传图片</h2>
+				<hr />
+				<div class="tupianguanli">
+					<form action="">
+						<p>1.上传图片名称：</p>
+						<input type="text" name="" id="picture_title_input" value="" placeholder="请给图片标题命名" />
+						<!--<button style="height:2.2em;">确定</button>-->
+						<div>
+							<div class="shangchuanwenjian_2_div">
+								<p>2.请上传图片文件：</p>
+								<input type="file" id="picture_file_input" />
+							</div>
+							<div class="shangchuanwenjian_2_div">
+								<p>3.备注：</p>
+								<textarea name="" rows="" cols="" id="picture_info_textarea">图片备注</textarea>
+							</div>
+						</div>
+						<br />
+						<div>
+							<input type="submit" name="" id="picture_info_submit" value="提交" />
+							<input type="reset" name="" id="picture_info_reset" value="重置" />
+						</div>
+					</form>
+				</div>
+
+				<h2>图片管理</h2>
+				<hr />
+				<br />
+				<center>
+					<div class="fangxiandiv">
+						<div class="fangxiandiv_div">
+							<a href="#"><button class="xin_icon left_top">编辑</button></a>
+							<a href=""><img src="img/faxian/samplepicture.png" class="picture" /></a>
+							<button class="picture_tag right_bottom">删除</button>
+							<p class="favorcount">
+								收藏：22人
+							</p>
+						</div>
+					</div>
+					<div class="fangxiandiv">
+						<div class="fangxiandiv_div">
+							<a href="#"><button class="xin_icon left_top">编辑</button></a>
+							<a href=""><img src="img/faxian/samplepicture.png" class="picture" /></a>
+							<button class="picture_tag right_bottom">删除</button>
+							<p class="favorcount">
+								收藏：22人
+							</p>
+						</div>
+					</div>
+					<div class="fangxiandiv">
+						<div class="fangxiandiv_div">
+							<a href="#"><button class="xin_icon left_top">编辑</button></a>
+							<a href=""><img src="img/faxian/samplepicture.png" class="picture" /></a>
+							<button class="picture_tag right_bottom">删除</button>
+							<p class="favorcount">
+								收藏：22人
+							</p>
+						</div>
+					</div>
+					<div class="fangxiandiv">
+						<div class="fangxiandiv_div">
+							<a href="#"><button class="xin_icon left_top">编辑</button></a>
+							<a href=""><img src="img/faxian/samplepicture.png" class="picture" /></a>
+							<button class="picture_tag right_bottom">删除</button>
+							<p class="favorcount">
+								收藏：22人
+							</p>
+						</div>
+					</div>
+					<div class="fangxiandiv">
+						<div class="fangxiandiv_div">
+							<a href="#"><button class="xin_icon left_top">编辑</button></a>
+							<a href=""><img src="img/faxian/samplepicture.png" class="picture" /></a>
+							<button class="picture_tag right_bottom">删除</button>
+							<p class="favorcount">
+								收藏：22人
+							</p>
+						</div>
+					</div>
+					<div class="fangxiandiv">
+						<div class="fangxiandiv_div">
+							<a href="#"><button class="xin_icon left_top">编辑</button></a>
+							<a href=""><img src="img/faxian/samplepicture.png" class="picture" /></a>
+							<button class="picture_tag right_bottom">删除</button>
+							<p class="favorcount">
+								收藏：22人
+							</p>
+						</div>
+					</div>
+					<div class="fangxiandiv">
+						<div class="fangxiandiv_div">
+							<a href="#"><button class="xin_icon left_top">编辑</button></a>
+							<a href=""><img src="img/faxian/samplepicture.png" class="picture" /></a>
+							<button class="picture_tag right_bottom">删除</button>
+							<p class="favorcount">
+								收藏：22人
+							</p>
+						</div>
+					</div>
+					<div class="fangxiandiv">
+						<div class="fangxiandiv_div">
+							<a href="#"><button class="xin_icon left_top">编辑</button></a>
+							<a href=""><img src="img/faxian/samplepicture.png" class="picture" /></a>
+							<button class="picture_tag right_bottom">删除</button>
+							<p class="favorcount">
+								收藏：22人
+							</p>
+						</div>
+					</div>
+
+					<br /><br /><br />
+				</center>
+			</div>
+		</div>
+		<div id="bac-ss" onclick="mybacclick()"></div>
+	</body>
+
+</html>
