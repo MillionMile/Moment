@@ -55,6 +55,12 @@
 	padding: 0 1em;
 	max-width:28em;
 }
+
+.pinglunyou{
+	float:right;
+	margin-right:0 !important;
+}
+
 .user_pinglun_div_right .pinglun {
 	margin: 0.5em -0.5em 0;
 }

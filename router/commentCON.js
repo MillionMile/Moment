@@ -14,8 +14,13 @@ module.exports = function () {
         // console.log(Picture_id);
         switch (req.query.action) {
             case "find"://获取具体图片的评论列表（Picture_id,page）
-                let page = req.query.page;
-                operationDao.CommentsOfPicture(Picture_id, 5, page, (err, result) => {//5条一页
+                // let page = req.query.page;
+                // operationDao.CommentsOfPicture(Picture_id, 5, page, (err, result) => {//5条一页
+                //     //console.log(result);
+                //     // res.send(result);
+                //     res.json(result);
+                // });
+                operationDao.CommentsOfPicture(Picture_id, (err, result) => {//5条一页
                     //console.log(result);
                     // res.send(result);
                     res.json(result);

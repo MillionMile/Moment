@@ -3,6 +3,7 @@ const pictureDao = require("../dao/pictureDao");
 const operationDao = require("../dao/OperationDao.js");
 const userDao=require('../dao/userDao');
 const folderDao = require('../dao/folderDao');
+const commonCON=require('../router/commonCON.js');
 module.exports = function () {
     let router = app.Router();
 
@@ -21,9 +22,9 @@ module.exports = function () {
                             res.render("picturesList", { list: data, isLogin: isLogin });
                             return;
                         }
-                        checkVote(req.session['user_id'], data[i]._id, (result) => {
+                        commonCON.checkVote(req.session['user_id'], data[i]._id, (result) => {
                             data[i].isVote = result;
-                            getVoteCountOfPic(data[i]._id, (dataCount) => {
+                            commonCON.getVoteCountOfPic(data[i]._id, (dataCount) => {
                                 data[i].voteCount = dataCount.length;
                                 operationDao.OperationsCount({ user_id: req.session['user_id'] }, data[i]._id,
                                     { favor: { $exists: true } }, (err, result2) => {

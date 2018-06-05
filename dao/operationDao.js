@@ -52,9 +52,13 @@ OperationSchema.statics.PicturesOfFavor=function (user_id,folder_id,cb) {
         .populate('picture').exec(cb);
 }
 //8.遍历某图所有评论
-OperationSchema.statics.CommentsOfPicture=function (picture_id,limitNumber,page,cb) {
+// OperationSchema.statics.CommentsOfPicture=function (picture_id,limitNumber,page,cb) {
+//     this.find({$and:[{picture:picture_id},{comment:{$exists:true}}]},{user_id:1,comment:1,date:1})
+//     .populate('user_id').limit(limitNumber).skip(page*limitNumber).exec(cb);;
+// }
+OperationSchema.statics.CommentsOfPicture=function (picture_id,cb) {
     this.find({$and:[{picture:picture_id},{comment:{$exists:true}}]},{user_id:1,comment:1,date:1})
-    .populate('user_id').limit(limitNumber).skip(page*limitNumber).exec(cb);;
+    .populate('user_id').sort({date:-1}).exec(cb);
 }
 //9.删除某收藏夹对应的图片所有收藏操作
 OperationSchema.statics.FavorsAllDeleteByFolder=function (folder_id,cb) {
