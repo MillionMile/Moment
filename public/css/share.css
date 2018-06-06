@@ -23,10 +23,7 @@ body {
 	position: relative;
 	top: 0;
 	z-index: 1;
-<<<<<<< HEAD
-=======
 	padding:0;
->>>>>>> pr/2
 }
 
 .picturediv {
@@ -37,11 +34,8 @@ body {
 .fangxiandiv_div {
 	position: absolute;
 	height: 300px;
-<<<<<<< HEAD
-=======
 	background:#fff;
 	box-sizing:border-box;
->>>>>>> pr/2
 }
 
 #picturgroup {
@@ -53,14 +47,11 @@ body {
 	background: rgba(255, 255, 255, 0.7);
 }
 
-<<<<<<< HEAD
-=======
 #picturgroup_div{
 	width:1075px;
 	margin:0 auto;
 }
 
->>>>>>> pr/2
 .xin_icon {
 	display: block;
 	width: 30px;
@@ -70,11 +61,6 @@ body {
 	z-index: 2;
 }
 
-<<<<<<< HEAD
-.user_icon {
-	float: left;
-	margin: 0.5em;
-=======
 .zancount{
 	display: block;
 	position: absolute;
@@ -88,7 +74,6 @@ body {
 .user_icon {
 	float: left;
 	margin:0.2em 0.5em 0.1em 0.8em;
->>>>>>> pr/2
 	border-radius: 50%;
 	width: 40px;
 	height: 40px;
@@ -99,8 +84,6 @@ body {
 	float: right;
 }
 
-<<<<<<< HEAD
-=======
 .pic_title{
 	display:inline-block;
 	line-height:50px;
@@ -110,7 +93,6 @@ body {
 	overflow:hidden;
 }
 
->>>>>>> pr/2
 .picture_tag {
 	text-decoration: none;
 	position: absolute;

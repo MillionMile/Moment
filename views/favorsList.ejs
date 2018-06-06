@@ -1,84 +1,34 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-<head>
-    <meta charset="UTF-8">
-    <title>收藏列表</title>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/share.css" />
-    <style type="text/css">
-        #picturgroup{
-            margin-bottom: 5px ; margin-top: 10px
-        }
-        #picturgroup form{
-            padding-bottom: 2px
-        }
-        #picturgroup form .form-inline{
-            padding-bottom: 20px
-        }
-        h3{
-            padding-top:5px;padding-bottom: 3px
-        }
-        #success, #fail {
-=======
-
 <head>
     <meta charset="UTF-8">
     <title>收藏列表</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/share.css" />
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/underscore-noflect.js"></script>
     <style type="text/css">
         #picturgroup {
             margin-bottom: 5px;
             margin-top: 10px
         }
-
         #picturgroup form {
             padding-bottom: 2px
         }
-
         #picturgroup form .form-inline {
             padding-bottom: 20px
         }
-
         h3 {
             padding-top: 5px;
             padding-bottom: 3px
         }
-
-        #success,
-        #fail {
->>>>>>> pr/2
+        #success, #fail {
             display: none;
         }
     </style>
 </head>
 
 <body>
-<<<<<<< HEAD
-<div id="main">
-    <div id="picturgroup">
-        <h3><label class="control-label">添加新文件夹</label></h3>
-            <form class="form-horizontal">
-                <div class="form-inline">
-                    <label for="folderName" class="control-label">文件夹名字</label>
-                     <input type="text" name="folderName" id="folderName" style="width:15%" class="form-control"/>
-                    <input type="text" style="display:none" value="防止Enter触发提交" />
-                    <button id="submit" type="button" class="btn btn-success">提交</button>
-                </div>
-                <div class="alert alert-success" role="alert" id="success">
-                    <a href="#" class="alert-link">文件夹创建成功</a>
-                </div>
-                <div class="alert alert-danger" role="alert" id="fail">
-                    <a href="#" class="alert-link">文件夹创建失败</a>
-                </div>
-            </form>
-    </div>
-    <div id="picturgroup" class="folders">
-
-    </div>
-</div>
-=======
     <div id="main">
             <%-include public/header.ejs%>
             <div id="picturgroup">
@@ -101,12 +51,12 @@
                 </form>
             </div>
             <div id="picturgroup" class="folders">
-
+                    <!--文件夹模板放置-->
             </div>
         </div>
->>>>>>> pr/2
 </body>
 
+<!--文件夹模板-->
 <script type="text/template" id="template">
     <div class="fangxiandiv">
         <div class="fangxiandiv_div">
@@ -123,19 +73,12 @@
     </div>
 </script>
 
-<script src="../js/jquery-1.11.3.min.js"></script>
-<script src="../js/underscore-noflect.js"></script>
-
 <script type="text/javascript">
     getData();
 
     //Ajax请求数据
     function getData() {
-<<<<<<< HEAD
-        $.get("/picturesList/GetFavorFolders",(result)=>{
-=======
         $.get("/picturesList/GetFavorFolders", (result) => {
->>>>>>> pr/2
             //模板函数
             let compiled = _.template($("#template").html());
             //清空全部留言中的所有节点
@@ -143,13 +86,8 @@
             for (let i = 0; i < result.length; i++) {
                 //数据绑定
                 let html = compiled({
-<<<<<<< HEAD
-                    folder_name:result[i].folder_name,
-                    id:result[i]._id,
-=======
                     folder_name: result[i].folder_name,
                     id: result[i]._id,
->>>>>>> pr/2
                 });
                 //DOM操作，添加节点
                 $(".folders").append($(html));
@@ -159,36 +97,22 @@
 
     //Ajax删除文档
     function deleteFolder(folder_id) {
-<<<<<<< HEAD
-        $.get("/favor/deleteFolder?folder_id="+folder_id,(result)=>{
-=======
         $.get("/favor/deleteFolder?folder_id=" + folder_id, (result) => {
->>>>>>> pr/2
             if (result.result == 1)
                 getData();
         });
     }
 
-
     //Ajax提交表单
-<<<<<<< HEAD
-    $("#submit").click(()=>{
-        $("#fail").hide();
-        $("#success").hide();
-        $.post("/favor/addFavor",{
-           "folderName":$("#folderName").val()
-        },(result)=>{
-=======
     $("#submit").click(() => {
         $("#fail").hide();
         $("#success").hide();
         $.post("/favor/addFavor", {
             "folderName": $("#folderName").val()
         }, (result) => {
->>>>>>> pr/2
-            if (result.result == -1) {
+            if (result.result === -1) {
                 $("#fail").fadeIn();
-            } else if (result.result == 1) {
+            } else if (result.result === 1) {
                 //提交成功
                 $("#success").fadeIn();
                 //重新加载模板
@@ -197,5 +121,4 @@
         });
     })
 </script>
-
 </html>
