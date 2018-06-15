@@ -3,9 +3,7 @@ const commentCON=require("./commentCON");
 const listCON=require("./picturesListCON");
 const voteCON=require("./voteCON");
 const favorCON=require("./favorCON");
-
-const operationDao = require("../dao/OperationDao.js");
-const pictureDao=require("../dao/pictureDao");
+const userCON = require('./userCON')
 
 module.exports=function () {
   let router=app.Router();
@@ -25,6 +23,7 @@ module.exports=function () {
     router.use('/picturesList',listCON());
     router.use('/vote',voteCON());
     router.use('/favor',favorCON());
+    router.use('/user', userCON())
     router.use('/',(req,res)=>{
         res.render("index", { isLogin: !!req.session["user_id"] });
     });
