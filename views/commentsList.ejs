@@ -159,7 +159,7 @@
                     id: result[i]._id,
                     content: result[i].comment.content,
                     name: result[i].user_id.username,
-                    date: new Date(result[i].date).toLocaleString(),
+                    date: result[i].date,
                     Picture_id: "<%=Picture_id%>",
                     isLogin:"<%=isLogin%>",
                     username:"<%=username%>",

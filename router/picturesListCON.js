@@ -15,10 +15,14 @@ module.exports=function () {
                 res.render("picturesList",{isLogin: isLogin});
                 break;
             case "GetTrending-Pic":
+                let opts ='[';
                 pictureDao.Pictures((err,data)=>{
                     (function iterator(i) {
                         if(i===data.length){
-                            res.json(data);
+                            opts=opts.substring(0,opts.length-1);
+                            opts+=']';
+                            opts=JSON.parse(opts);
+                            res.json({data,opts});
                             return;
                         }
                         operationDao.OperationsCount({user_id:req.session['user_id']},data[i]._id,
@@ -27,9 +31,8 @@ module.exports=function () {
                                     {favor:{$exists:true}}, (err,result2)=>{
                                         operationDao.UsersOfVote(data[i]._id, (err, dataCount) =>{
                                             //平凑json字符串
-                                            data[i]._doc.voteCount=dataCount.length;
-                                            data[i]._doc.isVote=result1;
-                                            data[i]._doc.isFavor=result2;
+                                            opts+='{"isVote": '+result1+',"isFavor":'+result2+
+                                                ', "voteCount":'+dataCount.length+'},';
                                         iterator(i+1);
                                         });
                                     });
