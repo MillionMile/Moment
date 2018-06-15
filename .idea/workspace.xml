@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ef5a6a92-5fb7-4a26-9f1a-d418ba3643f6" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dao/commentDao.js" afterPath="$PROJECT_DIR$/dao/commentDao.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dao/db.js" afterPath="$PROJECT_DIR$/dao/db.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dao/favorDao.js" afterPath="$PROJECT_DIR$/dao/favorDao.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dao/folderDao.js" afterPath="$PROJECT_DIR$/dao/folderDao.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dao/issueDao.js" afterPath="$PROJECT_DIR$/dao/issueDao.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dao/operationDao.js" afterPath="$PROJECT_DIR$/dao/operationDao.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dao/pictureDao.js" afterPath="$PROJECT_DIR$/dao/pictureDao.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dao/userDao.js" afterPath="$PROJECT_DIR$/dao/userDao.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dao/voteDao.js" afterPath="$PROJECT_DIR$/dao/voteDao.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/authority.css" afterPath="$PROJECT_DIR$/public/css/authority.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/home.css" afterPath="$PROJECT_DIR$/public/css/home.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/login.css" afterPath="$PROJECT_DIR$/public/css/login.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/sighup.css" afterPath="$PROJECT_DIR$/public/css/sighup.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/tupianxiangqing.css" afterPath="$PROJECT_DIR$/public/css/tupianxiangqing.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/router/commentCON.js" afterPath="$PROJECT_DIR$/router/commentCON.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/router/favorCON.js" afterPath="$PROJECT_DIR$/router/favorCON.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/router/picturesListCON.js" afterPath="$PROJECT_DIR$/router/picturesListCON.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/router/router.js" afterPath="$PROJECT_DIR$/router/router.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/router/voteCON.js" afterPath="$PROJECT_DIR$/router/voteCON.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/FolderDemo.js" afterPath="$PROJECT_DIR$/test/FolderDemo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/OperationDemo.js" afterPath="$PROJECT_DIR$/test/OperationDemo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/PictureDemo.js" afterPath="$PROJECT_DIR$/test/PictureDemo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/UserDemo.js" afterPath="$PROJECT_DIR$/test/UserDemo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/util/md5.js" afterPath="$PROJECT_DIR$/util/md5.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/commentsList.ejs" afterPath="$PROJECT_DIR$/views/commentsList.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/favor.ejs" afterPath="$PROJECT_DIR$/views/favor.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/favorsList.ejs" afterPath="$PROJECT_DIR$/views/favorsList.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.ejs" afterPath="$PROJECT_DIR$/views/index.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/picturesList.ejs" afterPath="$PROJECT_DIR$/views/picturesList.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/picturesListInFolder.ejs" afterPath="$PROJECT_DIR$/views/picturesListInFolder.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/public/header.ejs" afterPath="$PROJECT_DIR$/views/public/header.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/public/picturesList.ejs" afterPath="$PROJECT_DIR$/views/public/picturesList.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/模块说明" afterPath="$PROJECT_DIR$/模块说明" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+              <folding>
+                <marker date="1528280399000" expanded="true" signature="221:299" ph="{&quot;secret&quot;: 'keyboard cat'...}" />
+                <marker date="1528280399000" expanded="true" signature="332:355" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="505:558" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userCON.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/router/userCON.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1684">
+              <caret line="0" column="11" lean-forward="false" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FolderDemo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/FolderDemo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-304">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1528280399000" expanded="true" signature="49:259" ph="//..." />
+                <marker date="1528280399000" expanded="true" signature="261:464" ph="//..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userCon.test.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mochaTest/userCon.test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1529061712775" expanded="true" signature="226:358" ph="{&quot;let&quot;: sessionId...}" />
+                <marker date="1529061712775" expanded="true" signature="362:396" ph="{...}" />
+                <marker date="1529061712775" expanded="true" signature="430:464" ph="{...}" />
+                <marker date="1529061712775" expanded="true" signature="468:600" ph="{...}" />
+                <marker date="1529061712775" expanded="true" signature="573:595" ph="{...}" />
+                <marker date="1529061712775" expanded="true" signature="660:792" ph="{...}" />
+                <marker date="1529061712775" expanded="true" signature="764:787" ph="{...}" />
+                <marker date="1529061712775" expanded="true" signature="825:859" ph="{...}" />
+                <marker date="1529061712775" expanded="true" signature="863:1134" ph="{...}" />
+                <marker date="1529061712775" expanded="true" signature="1170:1328" ph="{...}" />
+                <marker date="1529061712775" expanded="true" signature="1369:1405" ph="{...}" />
+                <marker date="1529061712775" expanded="true" signature="1409:1668" ph="{...}" />
+                <marker date="1529061712775" expanded="true" signature="1706:1742" ph="{...}" />
+                <marker date="1529061712775" expanded="true" signature="1746:1883" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/router/router.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-360">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1528280399000" expanded="true" signature="323:956" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="392:666" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="572:625" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="629:660" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="860:873" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="picturesListCON.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/router/picturesListCON.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1528280399000" expanded="true" signature="249:2704" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="317:360" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="394:1803" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="428:568" ph="..." />
+                <marker date="1528280399000" expanded="true" signature="604:1785" ph="..." />
+                <marker date="1528280399000" expanded="true" signature="697:1780" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="742:849" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="1015:1061" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="1199:1253" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="1298:1439" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="1915:1983" ph="{&quot;folder_id&quot;: folder_id...}" />
+                <marker date="1528280399000" expanded="true" signature="2136:2204" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="2478:2555" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="favorCON.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/router/favorCON.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1528280399000" expanded="true" signature="208:2765" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="278:414" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="289:371" ph="//..." />
+                <marker date="1528280399000" expanded="true" signature="481:664" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="506:641" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="724:791" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="893:1041" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="903:999" ph="//..." />
+                <marker date="1528280399000" expanded="true" signature="1102:1123" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="1174:1200" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="1228:1252" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="1358:1403" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="1475:1536" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="1552:1643" ph="{&quot;list&quot;: result.folders...}" />
+                <marker date="1528280399000" expanded="true" signature="1705:1829" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="1715:1788" ph="//..." />
+                <marker date="1528280399000" expanded="true" signature="1987:2009" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="2012:2101" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="2105:2310" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="2193:2258" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="2374:2447" ph="{...}" />
+                <marker date="1528280399000" expanded="true" signature="2523:2631" ph="{&quot;user_id&quot;: user_id...}" />
+                <marker date="1528280399000" expanded="true" signature="2650:2703" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="commentCON.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/router/commentCON.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/router/router.js" />
+        <option value="$PROJECT_DIR$/router/picturesListCON.js" />
+        <option value="$PROJECT_DIR$/test/PictureDemo.js" />
+        <option value="$PROJECT_DIR$/views/public/picturesList.ejs" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1090" />
+    <option name="height" value="920" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Assignment issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Bitwise operation issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Code quality toolsJavaScript</id>
+          </State>
+          <State>
+            <id>Code style issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Control flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>DOM issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Data flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>ECMAScript 6 migration aidsJavaScript</id>
+          </State>
+          <State>
+            <id>Error handlingJavaScript</id>
+          </State>
+          <State>
+            <id>Flow type checkerJavaScript</id>
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript function metricsJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript validity issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Naming conventionsJavaScript</id>
+          </State>
+          <State>
+            <id>Node.jsJavaScript</id>
+          </State>
+          <State>
+            <id>Potentially confusing code constructsJavaScript</id>
+          </State>
+          <State>
+            <id>Probable bugsJavaScript</id>
+          </State>
+          <State>
+            <id>TypeScript</id>
+          </State>
+          <State>
+            <id>Unit testingJavaScript</id>
+          </State>
+        </expanded-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Moment" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Moment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Moment" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Moment" type="462c0819:PsiDirectoryNode" />
+              <item name="mochaTest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Moment" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Moment" type="462c0819:PsiDirectoryNode" />
+              <item name="router" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Moment" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Moment" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Node.js.app.js">
+    <configuration name="Unnamed" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="$PROJECT_DIR$">
+      <EXTENSION ID="com.jetbrains.nodejs.remote.docker.NodeJSDockerRunConfigurationExtension">
+        <option name="envVars">
+          <list />
+        </option>
+        <option name="extraHosts">
+          <list />
+        </option>
+        <option name="links">
+          <list />
+        </option>
+        <option name="networkDisabled" value="false" />
+        <option name="networkMode" value="bridge" />
+        <option name="portBindings">
+          <list />
+        </option>
+        <option name="publishAllPorts" value="false" />
+        <option name="version" value="1" />
+        <option name="volumeBindings">
+          <list />
+        </option>
+      </EXTENSION>
+    </configuration>
+    <configuration name="app.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="app.js" working-dir="$PROJECT_DIR$" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Node.js.Unnamed" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js.app.js" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.app.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ef5a6a92-5fb7-4a26-9f1a-d418ba3643f6" name="Default" comment="" />
+      <created>1528876548623</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1528876548623</updated>
+      <workItem from="1528876554689" duration="3083000" />
+      <workItem from="1529061268680" duration="241000" />
+      <workItem from="1529063141484" duration="169000" />
+      <workItem from="1529063433718" duration="655000" />
+      <workItem from="1529066302915" duration="259000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4407000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21127503" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/public/css/rank.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/sighup.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/share.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/tupianguanli.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/tupianxiangqing.css" />
+    <entry file="file://$PROJECT_DIR$/router/picturesListCON.js" />
+    <entry file="file://$PROJECT_DIR$/router/router.js" />
+    <entry file="file://$PROJECT_DIR$/views/public/picturesList.ejs" />
+    <entry file="file://$PROJECT_DIR$/模块说明" />
+    <entry file="file://$PROJECT_DIR$/test/UserDemo.js" />
+    <entry file="file://$PROJECT_DIR$/router/commentCON.js" />
+    <entry file="file://$PROJECT_DIR$/views/picturesList.ejs" />
+    <entry file="file://$PROJECT_DIR$/router/picturesListCON.js" />
+    <entry file="file://$PROJECT_DIR$/dao/pictureDao.js" />
+    <entry file="file://$PROJECT_DIR$/test/PictureDemo.js" />
+    <entry file="file://$PROJECT_DIR$/router/favorCON.js" />
+    <entry file="file://$PROJECT_DIR$/router/voteCON.js" />
+    <entry file="file://$PROJECT_DIR$/dao/pictureDao.js" />
+    <entry file="file://$PROJECT_DIR$/test/PictureDemo.js" />
+    <entry file="file://$PROJECT_DIR$/模块说明" />
+    <entry file="file://$PROJECT_DIR$/test/UserDemo.js" />
+    <entry file="file://$PROJECT_DIR$/views/picturesListInFolder.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/picturesList.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/index.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/favorsList.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/favor.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/util/md5.js" />
+    <entry file="file://$PROJECT_DIR$/views/public/header.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/public/picturesList.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/commentsList.ejs" />
+    <entry file="file://$PROJECT_DIR$/public/css/authority.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/bootstrap.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/bootstrap-theme.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/jquery.Jcrop.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/jumbotron.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/login.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/rank.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/sighup.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/tupianguanli.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/share.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/tupianxiangqing.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/home.css" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-220">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <marker date="1528280399000" expanded="true" signature="221:299" ph="{&quot;secret&quot;: 'keyboard cat'...}" />
+            <marker date="1528280399000" expanded="true" signature="332:355" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="505:558" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/router/picturesListCON.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1528280399000" expanded="true" signature="249:2704" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="317:360" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="394:1803" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="428:568" ph="..." />
+            <marker date="1528280399000" expanded="true" signature="604:1785" ph="..." />
+            <marker date="1528280399000" expanded="true" signature="697:1780" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="742:849" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="1015:1061" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="1199:1253" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="1298:1439" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="1915:1983" ph="{&quot;folder_id&quot;: folder_id...}" />
+            <marker date="1528280399000" expanded="true" signature="2136:2204" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="2478:2555" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/router/favorCON.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1528280399000" expanded="true" signature="208:2765" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="278:414" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="289:371" ph="//..." />
+            <marker date="1528280399000" expanded="true" signature="481:664" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="506:641" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="724:791" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="893:1041" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="903:999" ph="//..." />
+            <marker date="1528280399000" expanded="true" signature="1102:1123" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="1174:1200" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="1228:1252" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="1358:1403" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="1475:1536" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="1552:1643" ph="{&quot;list&quot;: result.folders...}" />
+            <marker date="1528280399000" expanded="true" signature="1705:1829" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="1715:1788" ph="//..." />
+            <marker date="1528280399000" expanded="true" signature="1987:2009" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="2012:2101" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="2105:2310" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="2193:2258" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="2374:2447" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="2523:2631" ph="{&quot;user_id&quot;: user_id...}" />
+            <marker date="1528280399000" expanded="true" signature="2650:2703" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/router/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-360">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1528280399000" expanded="true" signature="323:956" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="392:666" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="572:625" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="629:660" ph="{...}" />
+            <marker date="1528280399000" expanded="true" signature="860:873" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/FolderDemo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-304">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1528280399000" expanded="true" signature="49:259" ph="//..." />
+            <marker date="1528280399000" expanded="true" signature="261:464" ph="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mochaTest/userCon.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1529061712775" expanded="true" signature="226:358" ph="{&quot;let&quot;: sessionId...}" />
+            <marker date="1529061712775" expanded="true" signature="362:396" ph="{...}" />
+            <marker date="1529061712775" expanded="true" signature="430:464" ph="{...}" />
+            <marker date="1529061712775" expanded="true" signature="468:600" ph="{...}" />
+            <marker date="1529061712775" expanded="true" signature="573:595" ph="{...}" />
+            <marker date="1529061712775" expanded="true" signature="660:792" ph="{...}" />
+            <marker date="1529061712775" expanded="true" signature="764:787" ph="{...}" />
+            <marker date="1529061712775" expanded="true" signature="825:859" ph="{...}" />
+            <marker date="1529061712775" expanded="true" signature="863:1134" ph="{...}" />
+            <marker date="1529061712775" expanded="true" signature="1170:1328" ph="{...}" />
+            <marker date="1529061712775" expanded="true" signature="1369:1405" ph="{...}" />
+            <marker date="1529061712775" expanded="true" signature="1409:1668" ph="{...}" />
+            <marker date="1529061712775" expanded="true" signature="1706:1742" ph="{...}" />
+            <marker date="1529061712775" expanded="true" signature="1746:1883" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/router/commentCON.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/router/userCON.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1684">
+          <caret line="0" column="11" lean-forward="false" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

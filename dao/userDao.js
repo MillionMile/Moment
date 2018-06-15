@@ -38,19 +38,4 @@ userSchema.statics.FolderDelete = function (_id,folder_id,cb) {
     )
 }
 
-// 5.创建用户
-userSchema.statics.createUser = function (username, password, cb) {
-	return this.create({ username, password }, cb)
-}
-
-// 6.根据用户名查找用户
-userSchema.statics.findUserByUsername = function (username, cb) {
-	return this.findOne({ username }, cb)
-}
-
-// 7. 删除用户
-userSchema.statics.removeUsers = function () {
-	return this.remove({})
-}
-
 module.exports=mongoose.model('User',userSchema);
