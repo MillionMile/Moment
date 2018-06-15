@@ -1,4 +1,4 @@
-const operationDao = require("../dao/OperationDao.js");
+const operationDao = require("../dao/operationDao.js");
 
 var func = () => {
     let checkVote = (user_id, picture, cb) => {

@@ -1,6 +1,6 @@
 const app = require('express');
 const pictureDao = require("../dao/pictureDao");
-const operationDao = require("../dao/OperationDao.js");
+const operationDao = require("../dao/operationDao.js");
 const userDao=require('../dao/userDao');
 const folderDao = require('../dao/folderDao');
 const commonCON=require('../router/commonCON.js');
@@ -52,8 +52,8 @@ module.exports = function () {
                 break;
             case "GetFavorFolders":
                 userDao.findUFoldersById(req.session["user_id"], (err, result) => {
-                    // console.log(result.folders);
-                    res.json(result.folders);
+
+					res.json(result ? result.folders: []);
                 });
                 break;
             default:
