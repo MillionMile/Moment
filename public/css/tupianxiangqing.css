@@ -45,22 +45,51 @@
 	margin: 0.5em 0;
 }
 
+
 .pinglun {
 	margin: 0.5em 0;
-	line-height: 40px;
+	line-height: 2em;
 	display: inline-block;
 	background: #78BAF9;
 	border-radius: 5px;
 	color: #fff;
-	padding: 0 1em;
+	padding: 0.2em 1em;
 	max-width:28em;
 }
+
+.pinglunyou{
+	float:right;
+	margin-right:0 !important;
+}
+
+.delcommentzuo{
+	font-size:0.8em;
+	vertical-align:bottom;
+	line-height:2.5em;
+	text-decoration:none;
+	display:inline-block;
+}
+.delcommentyou{
+	font-size:0.8em;
+	display:block !important;
+	position:relative;
+	right:2.8em;
+	top:-1.5em;
+	width:2em;
+}
+
+.time_tag_right{
+	margin-top:-1em;
+	clear:both;
+	float: right !important;
+}
+
 .user_pinglun_div_right .pinglun {
 	margin: 0.5em -0.5em 0;
 }
 
 .time_tag {
-	float: right;
+	float: left;
 	font-size: 0.8em;
 }
 

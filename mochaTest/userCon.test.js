@@ -7,95 +7,95 @@ const path = require('path')
 
 describe('/user', () => {
 
-	const username = '1234567'
-	const password = '123456'
-	const confirm = '123456'
-	let sessionId
-	
+    const username = '1234567'
+    const password = '123456'
+    const confirm = '123456'
+    let sessionId
 
-	after('remove user', async () => {
-		await userDao.removeUsers()
-	})
 
-	describe('create user', () => {
+    after('remove user', async () => {
+        await userDao.removeUsers()
+    })
 
-		it('should success', async () => {
+    describe('create user', () => {
 
-			await request
-				.post('/user/createUser')
-				.send({ username, password, confirm })
-				.expect({
-					result: 1
-				})
-		})
+        it('should success', async () => {
 
-		it('should faild for duplicated username', async () => {
-			await request
-				.post('/user/createUser')
-				.send({ username, password, confirm })
-				.expect({
-					result: -1
-				})
-		})
+            await request
+                .post('/user/createUser')
+                .send({ username, password, confirm })
+                .expect({
+                    result: 1
+                })
+        })
 
-	})
+        it('should faild for duplicated username', async () => {
+            await request
+                .post('/user/createUser')
+                .send({ username, password, confirm })
+                .expect({
+                    result: -1
+                })
+        })
 
-	describe('login', () => {
+    })
 
-		it('should success', async () => {
+    describe('login', () => {
 
-			const res = await request
-				.post('/user/login')
-				.send({ username, password })
-				.expect({ result: 1 })
+        it('should success', async () => {
 
-			const setCookie = res.header['set-cookie'][0]
-			assert(setCookie)
+            const res = await request
+                .post('/user/login')
+                .send({ username, password })
+                .expect({ result: 1 })
 
-			sessionId = /^connect.sid=([^;]*)/.exec(setCookie)[0]
-			assert(sessionId)
-		})
+            const setCookie = res.header['set-cookie'][0]
+            assert(setCookie)
 
-		it('should faild', async () => {
+            sessionId = /^connect.sid=([^;]*)/.exec(setCookie)[0]
+            assert(sessionId)
+        })
 
-			const wrongPassword = '123'
+        it('should faild', async () => {
 
-			await request
-				.post('/user/login')
-				.send({ username, password: wrongPassword })
-				.expect({ result: -1 })
+            const wrongPassword = '123'
 
-		})
+            await request
+                .post('/user/login')
+                .send({ username, password: wrongPassword })
+                .expect({ result: -1 })
 
-	})
+        })
 
-	describe('upload avatar', () => {
-		
-		it('should success', async () => {
+    })
 
-			const filePath = path.resolve(__dirname, '../public/img/avatar.jpg')
-			const fileBuffer = fs.readFileSync(filePath)
+    describe('upload avatar', () => {
 
-			await request
-				.post('/user/avatar')
-				.attach('avatar', filePath)
-				.set('cookie', sessionId)
-				.expect({ result: 1 })
-		})
+        it('should success', async () => {
 
-	})
+            const filePath = path.resolve(__dirname, '../public/img/avatar.jpg')
+            const fileBuffer = fs.readFileSync(filePath)
 
-	describe('get avatar', () => {
-		
-		it('should success', async () => {
+            await request
+                .post('/user/avatar')
+                .attach('avatar', filePath)
+                .set('cookie', sessionId)
+                .expect({ result: 1 })
+        })
 
-			const res = await request
-				.get('/user/avatar')
-				.set('cookie', sessionId)
-			assert(typeof res.body.result === 'string')
-		})
+    })
 
-	})
+    describe('get avatar', () => {
+
+        it('should success', async () => {
+
+            const res = await request
+                .get('/user/avatar')
+                .set('cookie', sessionId)
+            assert(typeof res.body.result === 'string')
+        })
+
+    })
 
 })
 

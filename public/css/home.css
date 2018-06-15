@@ -35,6 +35,7 @@ header>div>img{
 	left:0;
 	-webkit-animation:banner 10s infinite;
 }
+
 @-webkit-keyframes banner {
 	0%,33% {
 	left:0;
