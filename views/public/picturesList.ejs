@@ -17,10 +17,10 @@
                     {{=voteCount}}
                     </span>
                 </div>
-                <a href="/commentsList?Picture_id={{=id}}">
+                <a href="/commentsList?pictureId={{=id}}">
                     <img src="/img/faxian/samplepicture.png" class="picture" />
                 </a>
-                <a href="/commentsList?Picture_id={{=id}}" class="picture_tag">
+                <a href="/commentsList?pictureId={{=id}}" class="picture_tag">
                     By 作者
                 </a>
                 <div>
@@ -41,18 +41,18 @@
 
 <script>
 
-    getData();
+    getData()
     //Ajax请求数据
-    function getData(url="/picturesList/GetTrending-Pic",json={}) {
+    function getData(url="/picturesList/getTrendingPic",json={}) {
         $.get(url,json, (result) => {
             if(!result){
-                $(".pictures").html("<h1>没有相关图片</h1>");
-                return;
+                $(".pictures").html("<h1>没有相关图片</h1>")
+                return
             }
             //模板函数
-            let compiled = _.template($("#template").html());
+            let compiled = _.template($("#template").html())
             //清空全部留言中的所有节点
-            $(".pictures").html("");
+            $(".pictures").html("")
             for (let i = 0; i < result.length; i++) {
                 //数据绑定
                 let html = compiled({
@@ -61,49 +61,53 @@
                     voteCount: result[i].voteCount,
                     isVote: result[i].isVote,
                     isFavor: result[i].isFavor,
-                });
+                })
                 //DOM操作，添加节点
-                $(".pictures").append($(html));
+                $(".pictures").append($(html))
             }
             $(".pictures").append($(" <center><div><a href=\"#\"><img src=\"/img/faxian/shuaxin.png\" />\n" +
-                "</a></div> </center>"));
-        });
+                "</a></div> </center>"))
+        })
     }
 
     $(document).on("click",'.xin_icon',function () {
-        let index = $('.xin_icon').index($(this));
-        let pic = $('.pic_id:eq(' + index + ')').val();
+        let index = $('.xin_icon').index($(this))
+        let pic = $('.pic_id:eq(' + index + ')').val()
         if ($(this).attr('src') === "/img/icon/爱心.png") {
             if ($('#isLogin').val() === "false") {
-                alert('登录后才能进行点赞!');
-                return;
+                alert('登录后才能进行点赞!')
+                return
             }
-            $(this).attr('src', "/img/icon/爱心变化.png");
-            $.get("/vote/addVote?Picture_id=" + pic, (result) => {
+            $(this).attr('src', "/img/icon/爱心变化.png")
+            $.get("/vote/addVote?pictureId=" + pic, (result) => {
                 if(result.result===1){
-                $('.zancount:eq(' + index + ')').html(parseInt($('.zancount:eq(' + index + ')').html()) + 1);
-                $('.zancount:eq(' + index + ')').css('color', 'rgb(229,28,35)');}
-            });
+                $('.zancount:eq(' + index + ')').html(parseInt($('.zancount:eq(' + index + ')').html()) + 1)
+                $('.zancount:eq(' + index + ')').css('color', 'rgb(229,28,35)')}
+            })
         } else {
-            $(this).attr('src', "/img/icon/爱心.png");
-            $.get("/vote/delVote?Picture_id=" + pic, (result) => {
+            $(this).attr('src', "/img/icon/爱心.png")
+            $.get("/vote/delVote?pictureId=" + pic, (result) => {
                 if(result.result===1){
-                $('.zancount:eq(' + index + ')').html(parseInt($('.zancount:eq(' + index + ')').html()) - 1);
-                $('.zancount:eq(' + index + ')').css('color', 'white');}
-            });
+                $('.zancount:eq(' + index + ')').html(parseInt($('.zancount:eq(' + index + ')').html()) - 1)
+                $('.zancount:eq(' + index + ')').css('color', 'white')}
+            })
         }
-    });
+    })
 
      $(document).on("click",".zhuanfa_icon",function () {
-        let index = $('.zhuanfa_icon').index($(this));
-        let pic = $('.pic_id:eq(' + index + ')').val();
+        let index = $('.zhuanfa_icon').index($(this))
+        let pic = $('.pic_id:eq(' + index + ')').val()
         if ($(this).attr('src') === "/img/faxian/favor_icon.png") {
-            $(this).attr('src', "/img/faxian/favor_icon.png");
-            $(location).attr('href', '/favor?Picture_id='+pic);
+            if ($('#isLogin').val() === "false") {
+                alert('登录后才能进行收藏!')
+                return
+            }
+            $(this).attr('src', "/img/faxian/favor_icon.png")
+            $(location).attr('href', '/favor?pictureId='+pic)
         } else {
-            $(this).attr('src', "/img/faxian/favor_icon.png");
-            $.get("/favor/delFavor?Picture_id=" + pic,(result)=>{
-            });
+            $(this).attr('src', "/img/faxian/favor_icon.png")
+            $.get("/favor/delFavor?pictureId=" + pic,(result)=>{
+            })
         }
-    });
+    })
 </script>

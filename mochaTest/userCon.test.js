@@ -51,7 +51,7 @@ describe('/user', () => {
             const setCookie = res.header['set-cookie'][0]
             assert(setCookie)
 
-            sessionId = /^connect.sid=([^;]*)/.exec(setCookie)[0]
+            sessionId = /^connect.sid=([^]*)/.exec(setCookie)[0]
             assert(sessionId)
         })
 

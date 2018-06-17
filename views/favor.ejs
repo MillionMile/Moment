@@ -26,7 +26,7 @@
     <%-include public/header.ejs%>
         <div class="content" style="padding:1em;margin:0 auto;background:rgba(255,255,255,0.8);">
             <h1>
-                <%=Picture_id%>图片收藏操作</h1>
+                <%=pictureId%>图片收藏操作</h1>
             <br>
             <div class="row">
                 <h4>
@@ -76,7 +76,7 @@
 
     //Ajax请求数据
     function getData() {
-        $.get("/picturesList/GetFavorFolders", (result) => {
+        $.get("/picturesList/getFavorFolders", (result) => {
             //模板函数
             let compiled = _.template($("#template").html());
             //清空全部留言中的所有节点
@@ -131,7 +131,7 @@
         $("#favor-success").hide();
         $.post("/favor/doFavor", {
             "folder_id": $("#folders").val(),
-            "Picture_id": "<%=Picture_id%>",
+            "pictureId": "<%=pictureId%>",
         }, (result) => {
             if (result.result === -1) {
                 $("#favor-fail").fadeIn();

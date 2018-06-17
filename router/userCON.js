@@ -27,11 +27,11 @@ module.exports = function () {
 		const { username, password } = req.body
 		userDao.findUserByUsername(username, (err, user) => {
 			if (err || !user) {
-				res.send('<script>alert("用户不存在！");history.back();</script>')
+				res.send('<script>alert("用户不存在！")history.back()</script>')
 				return
 			}
 			if (user.password !== password) {
-				res.send('<script>alert("密码错误，登录失败！");history.back();</script>')
+				res.send('<script>alert("密码错误，登录失败！")history.back()</script>')
 				return
 			}
 			req.session.regenerate((err) => {
@@ -45,7 +45,7 @@ module.exports = function () {
 
 	router.post('/avatar', upload.single('avatar'), (req, res) => {
 		const base64Url = req.file.buffer.toString('base64')
-		const formattedUrl = 'data:' + req.file.mimetype + ';base64,' + base64Url
+		const formattedUrl = 'data:' + req.file.mimetype + 'base64,' + base64Url
 
 		userDao.findUserById(req.session.user_id, (err, user) => {
 			if (err || !user) return res.send({ result: -1 })

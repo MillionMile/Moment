@@ -119,31 +119,9 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
         </div>
 </body>
-<!--评论模板-->
-<script type="text/template" id="template">
-    {{if((num%2)===1) { }}
-    <div class="user_pinglun_div_right">
-        {{ }else{ }}
-        <div class="user_pinglun_div_left">
-        {{ } }}
-            <img src="img/faxian/user_icon.png" class="user_icon" />
-            <img src="img/pinglun/pinglunzuo.png" class="pinglunzuo_icon" />
-            <div>
-                <p class="pinglun">{{= content }}</p>
-                {{if(isLogin==="true"&&(username===name)){ }}
-                <a href="/commentsList?Picture_id={{=Picture_id}}&action=delete&id={{=id}}" class="delete">删除</a>
-                {{ } }}
-                <br />
-                <span class="time_tag">{{= date }}</span>
-            </div>
-        </div>
-</script>
-=======
-        </div>
-</body>
+
 <!--评论模板-->
 <script type="text/template" id="template">
     {{if((num%2)===1) { }}
@@ -154,7 +132,9 @@
             <div style="float: right;margin-right: 0 !important;">
                 <p class="pinglun pinglunyou" >{{= content }}</p>
                 <div class="delcommentyou">
-                    <a href="/commentsList?Picture_id={{=Picture_id}}&action=delete&id={{=id}}">删除</a>
+                    {{if(isLogin==="true"&&(username===name)){ }}
+                    <a href="/commentsList/delete?pictureId={{=pictureId}}&id={{=id}}">删除</a>
+                    {{ } }}
                 </div>
             </div>
             <span class="time_tag time_tag_right">{{=date}}</span>
@@ -166,14 +146,15 @@
         <img src="img/pinglun/pinglunzuo.png" class="pinglunzuo_icon" />
         <div>
             <p class="pinglun">{{= content }}</p>
-            <a href="/commentsList?Picture_id={{=Picture_id}}&action=delete&id={{=id}}" class="delcommentzuo">删除</a>
+            {{if(isLogin==="true"&&(username===name)){ }}
+            <a href="/commentsList/delete?pictureId={{=pictureId}}&id={{=id}}" class="delcommentzuo">删除</a>
+            {{ } }}
                 <br />
                 <span class="time_tag">{{=date}}</span>
             </div>
         </div>
         {{ } }}
     </script>
->>>>>>> pr/4
 
 <script type="text/javascript">
     //默认请求第一页数据
@@ -181,7 +162,7 @@
 
     //Ajax请求数据
     function getData() {
-        $.get("/commentsList?Picture_id=<%=Picture_id%>&action=find", function (result) {
+        $.get("/commentsList/find?pictureId=<%=pictureId%>", function (result) {
             //模板函数
             let compiled = _.template($("#template").html());
             //清空全部留言中的所有节点
@@ -194,7 +175,7 @@
                     content: result[i].comment.content,
                     name: result[i].user_id.username,
                     date: new Date(result[i].date).toLocaleString(),
-                    Picture_id: "<%=Picture_id%>",
+                    pictureId: "<%=pictureId%>",
                     isLogin:"<%=isLogin%>",
                     username:"<%=username%>",
                 });
@@ -208,8 +189,12 @@
 
     //Ajax提交表单
     $("#submit").click(function () {
+        if ($('#isLogin').val() === "false") {
+                alert('登录后才能评论');
+                return;
+            }
         $.post("/commentsList", {
-            "picture_id": "<%=Picture_id%>",
+            "pictureId": "<%=pictureId%>",
             "content": $("#pinglunarea").val()
         }, function (result) {
             if (result.result === -1) {
@@ -229,12 +214,12 @@
                 return;
             }
             $(this).attr('src', "img/icon/爱心变化.png");
-            $.get("/vote/addVote?Picture_id=" + '<%=Picture_id%>', (result) => {
+            $.get("/vote/addVote?pictureId=" + '<%=pictureId%>', (result) => {
                 location.reload();
             });
         } else {
             $(this).attr('src', "img/icon/爱心.png");
-            $.get("/vote/delVote?Picture_id=" + '<%=Picture_id%>', (result) => {
+            $.get("/vote/delVote?pictureId=" + '<%=pictureId%>', (result) => {
                 location.reload();
             });
         }
