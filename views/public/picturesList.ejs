@@ -36,17 +36,19 @@
                 </div>
             </div>
             <input type="hidden" value="{{=id}}" class="pic_id">
-            <input type="hidden" value={{=isLogin}} id="isLogin">
     </div>
 </script>
 
 <script>
 
     getData();
-
     //Ajax请求数据
-    function getData() {
-        $.get("/picturesList/GetTrending-Pic", (result) => {
+    function getData(url="/picturesList/GetTrending-Pic",json={}) {
+        $.get(url,json, (result) => {
+            if(!result){
+                $(".pictures").html("<h1>没有相关图片</h1>");
+                return;
+            }
             //模板函数
             let compiled = _.template($("#template").html());
             //清空全部留言中的所有节点
@@ -59,7 +61,6 @@
                     voteCount: result[i].voteCount,
                     isVote: result[i].isVote,
                     isFavor: result[i].isFavor,
-                    isLogin:"<%=isLogin%>",
                 });
                 //DOM操作，添加节点
                 $(".pictures").append($(html));

@@ -1,4 +1,4 @@
-﻿*{
+﻿﻿*{
 	margin: 0;
 	padding: 0;
 }
@@ -28,23 +28,29 @@ header>div>img{
 	position:relative;
 	overflow:hidden;
 }
+
 .long {
-	width:3720px;
+	width:6200px;
 	font-size:0;
 	position:absolute;
 	left:0;
-	-webkit-animation:banner 10s infinite;
+	-webkit-animation:banner 20s infinite alternate;
 }
-
 @-webkit-keyframes banner {
-	0%,33% {
+	0%,15% {
 	left:0;
 	}
-	33%,66% {
+	20%,35% {
 	left:-1240px;
 	}
-	66%,100% {
+	40%,65% {
 	left:-2480px;
+	}
+	70%,85% {
+	left:-3720px;
+	}
+	90%,100% {
+	left:-4960px;
 	}
 }
 #homesearch{

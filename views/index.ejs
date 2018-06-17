@@ -15,6 +15,22 @@
             margin: 0 auto;
         }
     </style>
+
+    <script>
+        $(function () {
+            function mySubmit(flag) {
+                return flag;
+            }
+            $("#myForm").submit(function () {
+
+            });
+            $('#homesearchform').submit(function (event) {
+                getData('/picturesList/searchPicture', { keyword: $('#homesearch').val() });
+                setTimeout("$(document).scrollTop(580)",100);
+                return mySubmit(false);
+            });
+        });
+    </script>
 </head>
 
 
@@ -30,9 +46,11 @@
                         <strong>探索 发现 分享精彩！</strong>
                     </i>
                 </div>
-                <form>
-                    <input id="homesearch" type="text" name="search" placeholder="请输入图片关键词" style="font-size:14px;padding-left: 1em;border-radius: 6px;" />
-                    <input id="homesearchbuttun" type="button" name="search" value="搜&nbsp;&nbsp;索" style="color: white;font-size: 16px;border-radius: 6px;"/>
+                <form id="homesearchform">
+                    <input id="homesearch" type="text" name="search" placeholder="请输入图片关键词" style="font-size:14px;padding-left: 1em;border-radius: 6px;"
+                    />
+                    <input id="homesearchbuttun" type="submit" name="search" value="搜&nbsp;&nbsp;索" style="color: white;font-size: 16px;border-radius: 6px;"
+                    />
                 </form>
                 <div class="img-box long">
                     <img src="img/main/banner.jpg">

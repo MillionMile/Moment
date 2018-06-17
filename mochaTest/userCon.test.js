@@ -12,7 +12,6 @@ describe('/user', () => {
     const confirm = '123456'
     let sessionId
 
-
     after('remove user', async () => {
         await userDao.removeUsers()
     })

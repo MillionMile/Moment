@@ -1,8 +1,8 @@
 用户模块：
-    1. 登录(password,username)（完成）
-    2. 注册(password,username)（完成）
-    3. 上传头像(picture=data url)（完成）
-    4. 获取用户头像（完成）
+    1. 登录(password,username) (完成)
+    2. 注册(password,username) （完成）
+    3. 上传头像(picture=data url) （完成，差前端）
+    4. 获取用户头像 （完成，差前端）
 图片模块：
     1. 发布图片(picture=data url)
     2. 删除图片
@@ -24,4 +24,4 @@
     2. 取消点赞（完成）
     3. 获取点赞的头像（完成）
 搜索模块：
-    1. 根据标题、标签、描述实现模糊搜索
+    1. 根据标题、标签、描述实现模糊搜索 （完成）

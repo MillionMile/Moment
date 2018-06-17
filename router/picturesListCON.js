@@ -57,6 +57,33 @@ module.exports=function () {
                     res.json(result.folders);
                 });
                 break;
+            case "searchPicture":
+                pictureDao.FindByTagNAbstract(req.query.keyword,(err, data) => {
+                    if(!data||data.length===0){
+                        res.json(false);
+                        return;
+                    }
+                    (function iterator(i) {
+                        if (i === data.length) {
+                            res.json(data);
+                            return;
+                        }
+                        operationDao.OperationsCount({ user_id: req.session['user_id'] }, data[i]._id,
+                            { vote: { $exists: true } }, (err, result1) => {
+                                operationDao.OperationsCount({ user_id: req.session['user_id'] }, data[i]._id,
+                                    { favor: { $exists: true } }, (err, result2) => {
+                                        operationDao.UsersOfVote(data[i]._id, (err, dataCount) => {
+                                            //拼凑json字符串
+                                            data[i]._doc.voteCount = dataCount.length;
+                                            data[i]._doc.isVote = result1;
+                                            data[i]._doc.isFavor = result2;
+                                            iterator(i + 1);
+                                        });
+                                    });
+                            });
+                    })(0);
+                });
+                break;
             default:
                 break;
         }
