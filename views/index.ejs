@@ -6,6 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>探索！发现！分享！欢迎来到Moment~！</title>
+    <link rel="stylesheet" type="text/css" href="/css/share.css" />
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/underscore-noflect.js"></script>
+    <style>
+        #picturgroup {
+            width: 1240px;
+            margin: 0 auto;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            function mySubmit(flag) {
+                return flag;
+            }
+            $("#myForm").submit(function () {
+
+            });
+            $('#homesearchform').submit(function (event) {
+                getData('/picturesList/searchPicture', { keyword: $('#homesearch').val() });
+                setTimeout("$(document).scrollTop(580)",100);
+                return mySubmit(false);
+            });
+        });
+    </script>
 </head>
 
 
@@ -21,9 +46,11 @@
                         <strong>探索 发现 分享精彩！</strong>
                     </i>
                 </div>
-                <form>
-                    <input id="homesearch" type="text" name="search" placeholder="请输入图片关键词" style="font-size:14px;padding-left: 1em;border-radius: 6px;" />
-                    <input id="homesearchbuttun" type="button" name="search" value="搜&nbsp;&nbsp;索" style="color: white;font-size: 16px;border-radius: 6px;"/>
+                <form id="homesearchform">
+                    <input id="homesearch" type="text" name="search" placeholder="请输入图片关键词" style="font-size:14px;padding-left: 1em;border-radius: 6px;"
+                    />
+                    <input id="homesearchbuttun" type="submit" name="search" value="搜&nbsp;&nbsp;索" style="color: white;font-size: 16px;border-radius: 6px;"
+                    />
                 </form>
                 <div class="img-box long">
                     <img src="img/main/banner.jpg">
@@ -34,13 +61,7 @@
                 </div>
             </header>
             <%-include public/picturesList.ejs%>
-                <style>
-                    #picturgroup {
-                        width: 1240px;
-                        margin: 0 auto;
-
-                    }
-                </style>
+        </div>
 </body>
 
 </html>

@@ -3,12 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-<<<<<<< HEAD
-    <title>热门图片</title>
-=======
     <title>图片列表</title>
->>>>>>> pr/2
     <link rel="stylesheet" type="text/css" href="../css/share.css" />
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/underscore-noflect.js"></script>
     <style type="text/css">
         #bigicon {
             width: 1075px;
@@ -18,83 +16,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-<div id="main">
-    <div id="bigicon">
-        <center>
-           <img src="../img/remen/remen.png">
-        </center>
-    </div>
-    <div id="picturgroup">
-        <%for(var i=0;i<list.length;i++){%>
-        <div class="fangxiandiv">
-            <div class="fangxiandiv_div">
-                <%if(list[i].isVote>=1){%>
-                <img src="../img/faxian/hongxin.png" class="xin_icon" />
-                <%}else{%>
-                <img src="../img/faxian/xin.png" class="xin_icon" />
-                <%}%>
-                <a href="/commentsList?Picture_id=<%=list[i]._id%>">
-                    <img src="../img/faxian/samplepicture.png" class="picture" />
-                </a>
-                <a href="/commentsList?Picture_id=<%=list[i]._id%>" class="picture_tag">
-                    <%=list[i].title%>
-                </a>
-                <div>
-                    <img src="../img/faxian/user_icon.png" class="user_icon" />
-                    <%if(list[i].isFavor>=1){%>
-                    <img src="../img/faxian/remove_favor_icon.png" class="zhuanfa_icon" />
-                    <%}else{%>
-                    <img src="../img/faxian/favor_icon.png" class="zhuanfa_icon" />
-                    <%}%>
-                </div>
-            </div>
-            <input type="hidden" value="<%=list[i]._id%>" class="pic_id">
-        </div>
-
-        <%}%>
-        <center>
-            <div>
-                <a href="#">
-                    <img src="../img/faxian/shuaxin.png" />
-                </a>
-            </div>
-        </center>
-    </div>
-</div>
-</body>
-
-<script src="../js/jquery-1.11.3.min.js"></script>
-<script>
-    $('.xin_icon').click(function () {
-        let index = $('.xin_icon').index($(this));
-        let pic = $('.pic_id:eq(' + index + ')').val();
-        if ($(this).attr('src') ==="../img/faxian/xin.png") {
-            $(this).attr('src', "../img/faxian/hongxin.png");
-            $.get("/vote/addVote?Picture_id=" + pic, (result)=>{
-            });
-        } else {
-            $(this).attr('src', "../img/faxian/xin.png");
-            $.get("/vote/delVote?Picture_id=" + pic,(result)=>{
-            });
-        }
-    });
-
-    $('.zhuanfa_icon').click(function () {
-        let index = $('.zhuanfa_icon').index($(this));
-        let pic = $('.pic_id:eq(' + index + ')').val();
-        if ($(this).attr('src') === "../img/faxian/favor_icon.png") {
-            $(this).attr('src', "../img/faxian/favor_icon.png");
-            $(location).attr('href', '/favor?Picture_id='+pic);
-        } else {
-            $(this).attr('src', "../img/faxian/favor_icon.png");
-            $.get("/favor/delFavor?Picture_id=" + pic,(result)=>{
-            });
-        }
-    });
-</script>
-
-=======
     <%-include public/header.ejs%>
         <div id="main" style="margin-top:1em">
             <div id="bigicon">
@@ -106,5 +27,4 @@
         </div>
 </body>
 
->>>>>>> pr/2
 </html>

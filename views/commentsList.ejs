@@ -1,138 +1,243 @@
 <!DOCTYPE html>
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>全部留言</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/tupianxiangqing.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/underscore-noflect.js"></script>
     <style type="text/css">
-        #success, #fail {
-            display: none;
+        #picturgroup {
+            width: 1075px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.7);
         }
-
-        .comment {
-            padding: 10px 0;
-            border-bottom: 1px solid #ccc;
-            height: 150px;
+        .user_icon_vote {
+            display: inline-block;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border: #E7E7E7 solid 2px;
+            margin: 0.5em;
+        }
+        nav span a p {
+            float: left;
+            color: white;
+            font-weight: 600;
+            font-family: "微软雅黑";
+            margin-left: 45px;
+            margin-top: 8px;
+            font-size: 17px;
         }
     </style>
 </head>
+
 <body>
-<div class="container">
-    <h1><%=Picture_id%>图片的全部留言</h1>
-    <br>
-    <div class="row">
-        <form class="form-horizontal col-lg-6">
-            <div class="form-group">
-                <label for="content" class="col-sm-2 control-label">留言</label>
-
-                <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" name="content" id="content"></textarea>
+    <%-include public/header.ejs%>
+        <div id="main">
+            <div id="picturgroup">
+                <div style="padding: 1em 1.5em 0.5em;">
+                    <div style="float: left;">
+                        <a href="#" id="picture_title">富士山风光富士山风光</a>
+                        <a href="#" style="text-decoration:none;display: inline-block;" id="xin_btn">
+                            <%if(isVote){%>
+                                <img src="img/icon/爱心变化.png" style="vertical-align: bottom;width:30px" />
+                                <span id="zancount" style="color:rgb(232,86,95);">
+                                    <%=voteCount.length%>
+                                </span>
+                                <%}else{%>
+                                    <img src="img/icon/爱心.png" style="vertical-align: bottom;width:30px" />
+                                    <span id="zancount" style="color:#fff;">
+                                        <%=voteCount.length%>
+                                    </span>
+                                    <%}%>
+                        </a>
+                    </div>
+                    <a href="#" data-toggle="modal" data-target="#voteOfUser" style="margin-top:-0.5em;display:inline-block;text-decoration: none;">
+                        <div style="display:block;margin-left:1em;padding:0;float: left;">
+                            <%for(var i=0;i<voteCount.length;i++){%>
+                                <%if(i==3)break;%>
+                                    <img src="<%=voteCount[i]['user_id']['avatar']%>" id="vote_user_icon_<%=i%>" class="vote_user_icon" />
+                                    <%}%>
+                        </div>
+                        <%if(voteCount.length>=3){%>
+                            <span style="margin-left: -4.5em;color:rgb(232,86,95);margin-top:1.2em;opacity:0.8;display: inline-block;">...</span>
+                            <span style="margin-top:1.2em;display: inline-block;color:rgb(232,86,95);">等人点赞</span>
+                            <%}else if(voteCount.length>1){%>
+                                <span style="margin-left: -2em;color:rgb(232,86,95);margin-top:1.2em;opacity:0.8;display: inline-block;">...</span>
+                                <span style="margin-top:1.2em;display: inline-block;color:rgb(232,86,95);">等人点赞</span>
+                                <%}else if(voteCount.length==1){%>
+                                    <span style="margin-top:1.2em;margin-left:0em;display: inline-block;color:rgb(232,86,95);">点了赞</span>
+                                    <%}%>
+                    </a>
+                </div>
+                <img src="img/fushishan.png" id="picture_info" />
+                <br />
+                <br />
+                <br /> &emsp;&emsp;
+                <span style="font-size: 1.3em;">评论：</span>
+                <div id="pinglunqu">
+                    <br />
+                    <div id="pinglun_div">
+                        <!--评论模板放置-->
+                    </div>
+                    <br>
+                    <br>
+                    <form action="" method="post" id="pinglunform">
+                        <textarea id="pinglunarea">请在这开始评论</textarea>
+                        <button id="submit" type="button" class="btn btn-success" style="margin-top:1em;">提交</button>
+                        <button type="reset" class="btn btn-danger" style="margin-top:1em;">重置</button>
+                        <br />
+                        <br />
+                    </form>
                 </div>
             </div>
+            <div class="modal fade" id="voteOfUser" tabindex="-1" role="dialog" aria-labelledby="myreply" aria-hidden="true">
+                <div class="modal-dialog" id="modal-dialog" style="width: 400px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myreply">谁赞了这张图</h4>
+                        </div>
+                        <div class="modal-body" id="modal-body" style="text-align: center;max-height:30em;overflow: auto">
 
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button id="submit" type="button" class="btn btn-success">提交</button>
+                            <%for(var i=0;i<voteCount.length;i++){%>
+                                <a href="#" style="display: inline-block;text-decoration: none">
+                                    <img src="<%=voteCount[i]['user_id']['avatar']%>" class="user_icon_vote" />
+                                    <br>
+                                    <span>
+                                        <%=voteCount[i]['user_id']['username']%>
+                                    </span>
+                                </a>
+                                <%}%>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="alert alert-success" role="alert" id="success">
-                <a href="#" class="alert-link">评论提交成功</a>
-            </div>
-            <div class="alert alert-danger" role="alert" id="fail">
-                <a href="#" class="alert-link">评论提交失败</a>
-            </div>
-        </form>
-    </div>
-    <nav>
-        <ul class="pagination">
-
-        </ul>
-    </nav>
-    <div id="comments">
-
-    </div>
-</div>
-
+<<<<<<< HEAD
+        </div>
+</body>
+<!--评论模板-->
 <script type="text/template" id="template">
-    <div class="comment">
-        <p>【姓名】{{= name }}</p>
-        <p>【留言】{{= content }}</p>
-        <p>【时间】{{= date }}</p>
-        {{if(login=="1"&&(username===name)){ }}
-        <p><a href="/commentsList?Picture_id={{=Picture_id}}&action=delete&id={{=id}}" class="delete">删除</a></p>
+    {{if((num%2)===1) { }}
+    <div class="user_pinglun_div_right">
+        {{ }else{ }}
+        <div class="user_pinglun_div_left">
         {{ } }}
-    </div>
+            <img src="img/faxian/user_icon.png" class="user_icon" />
+            <img src="img/pinglun/pinglunzuo.png" class="pinglunzuo_icon" />
+            <div>
+                <p class="pinglun">{{= content }}</p>
+                {{if(isLogin==="true"&&(username===name)){ }}
+                <a href="/commentsList?Picture_id={{=Picture_id}}&action=delete&id={{=id}}" class="delete">删除</a>
+                {{ } }}
+                <br />
+                <span class="time_tag">{{= date }}</span>
+            </div>
+        </div>
 </script>
-
-<script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/underscore-noflect.js"></script>
+=======
+        </div>
+</body>
+<!--评论模板-->
+<script type="text/template" id="template">
+    {{if((num%2)===1) { }}
+    <div class="user_pinglun_div_right">
+        <img src="img/faxian/user_icon.png" class="user_icon" />
+        <img src="img/pinglun/pinglunyou.png" class="pinglunyou_icon" />
+        <div>
+            <div style="float: right;margin-right: 0 !important;">
+                <p class="pinglun pinglunyou" >{{= content }}</p>
+                <div class="delcommentyou">
+                    <a href="/commentsList?Picture_id={{=Picture_id}}&action=delete&id={{=id}}">删除</a>
+                </div>
+            </div>
+            <span class="time_tag time_tag_right">{{=date}}</span>
+        </div>
+    </div>
+    {{ }else{ }}
+    <div class="user_pinglun_div_left">
+        <img src="img/faxian/user_icon.png" class="user_icon" />
+        <img src="img/pinglun/pinglunzuo.png" class="pinglunzuo_icon" />
+        <div>
+            <p class="pinglun">{{= content }}</p>
+            <a href="/commentsList?Picture_id={{=Picture_id}}&action=delete&id={{=id}}" class="delcommentzuo">删除</a>
+                <br />
+                <span class="time_tag">{{=date}}</span>
+            </div>
+        </div>
+        {{ } }}
+    </script>
+>>>>>>> pr/4
 
 <script type="text/javascript">
-
     //默认请求第一页数据
-    getData(0);
-
-    //Ajax获取分页条
-    $.get("/commentsList?Picture_id=<%=Picture_id%>&action=count", function (result) {
-        let amount = parseInt(result.result);
-        //总页数
-        pageamount = Math.ceil(amount / 5);
-        for (let i = 1; i <= pageamount; i++) {
-            $(".pagination").append("<li><a href='javascript:void(0);'>" + i + "</a></li>");
-        }
-        $(".pagination li:first").addClass("active");
-        //监听
-        $(".pagination li").click(function () {
-            let page = $(this).index();
-            getData(page);
-            $(this).addClass("active").siblings().removeClass("active");
-        });
-    })
+    getData();
 
     //Ajax请求数据
-    function getData(page) {
-        $.get("/commentsList?Picture_id=<%=Picture_id%>&action=find&page=" + (page), function (result) {
+    function getData() {
+        $.get("/commentsList?Picture_id=<%=Picture_id%>&action=find", function (result) {
             //模板函数
             let compiled = _.template($("#template").html());
             //清空全部留言中的所有节点
-            $("#comments").html("");
+            $("#pinglun_div").html("");
             for (let i = 0; i < result.length; i++) {
                 //数据绑定
                 let html = compiled({
+                    num: i,
+                    id: result[i]._id,
                     content: result[i].comment.content,
                     name: result[i].user_id.username,
-                    date: result[i].date,
-                    Picture_id:"<%=Picture_id%>",
-                    id: result[i]._id,
-                    login:"<%=login%>",
+                    date: new Date(result[i].date).toLocaleString(),
+                    Picture_id: "<%=Picture_id%>",
+                    isLogin:"<%=isLogin%>",
                     username:"<%=username%>",
                 });
                 //DOM操作，添加节点
-                $("#comments").append($(html));
+                $("#pinglun_div").append($(html));
             }
+            $("#pinglun_div").scrollTop($("#pinglun_div")[0].scrollHeight);
+            // alert(;
         });
     }
 
     //Ajax提交表单
     $("#submit").click(function () {
-        $("#fail").hide();
-        $("#success").hide();
         $.post("/commentsList", {
-            "picture_id":"<%=Picture_id%>",
-            "content": $("#content").val()
+            "picture_id": "<%=Picture_id%>",
+            "content": $("#pinglunarea").val()
         }, function (result) {
-            if (result.result == -1) {
-                $("#fail").fadeIn();
-            } else if (result.result == 1) {
-                //提交成功
-                $("#success").fadeIn();
+            if (result.result === -1) {
+            } else if (result.result === 1) {
                 //重新加载数据
-                getData(0);
+                getData();
             }
         });
     });
+
+    $("#voteOfUser").draggable();
+
+    $('#xin_btn img').click(function () {
+        if ($(this).attr('src') === "img/icon/爱心.png") {
+            if ($('#isLogin').val() === "false") {
+                alert('登录后才能进行点赞!');
+                return;
+            }
+            $(this).attr('src', "img/icon/爱心变化.png");
+            $.get("/vote/addVote?Picture_id=" + '<%=Picture_id%>', (result) => {
+                location.reload();
+            });
+        } else {
+            $(this).attr('src', "img/icon/爱心.png");
+            $.get("/vote/delVote?Picture_id=" + '<%=Picture_id%>', (result) => {
+                location.reload();
+            });
+        }
+    });
 </script>
-</body>
 </html>

@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-=======
-
->>>>>>> pr/2
 <head>
     <meta charset="UTF-8">
     <title>收藏图片</title>
@@ -17,19 +13,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-<div id="main">
-    <div id="bigicon">
-        <center>
-            <img src="../img/remen/remen.png">
-        </center>
-    </div>
-    <div id="picturgroup" class="folders">
-
-    </div>
-</div>
-=======
-
     <%-include public/header.ejs%>
         <div id="main">
             <div id="bigicon">
@@ -41,7 +24,6 @@
 
             </div>
         </div>
->>>>>>> pr/2
 </body>
 
 <script type="text/template" id="template">
@@ -68,11 +50,7 @@
 
     //Ajax请求数据
     function getData() {
-<<<<<<< HEAD
-        $.get("/picturesList/GetPicInFolder?folder_id=<%=folder_id%>",(result)=>{
-=======
         $.get("/picturesList/GetPicInFolder?folder_id=<%=folder_id%>", (result) => {
->>>>>>> pr/2
             //模板函数
             let compiled = _.template($("#template").html());
             //清空全部留言中的所有节点
@@ -80,13 +58,8 @@
             for (let i = 0; i < result.length; i++) {
                 //数据绑定
                 let html = compiled({
-<<<<<<< HEAD
-                    title:result[i].picture.title,
-                    id:result[i].picture._id,
-=======
                     title: result[i].picture.title,
                     id: result[i].picture._id,
->>>>>>> pr/2
                 });
                 //DOM操作，添加节点
                 $(".folders").append($(html));
@@ -96,16 +69,11 @@
 
     //Ajax删除文档
     function deleteFavor(picture_id) {
-<<<<<<< HEAD
-        $.get("/favor/delFavor?Picture_id="+picture_id,(result)=>{
-=======
         $.get("/favor/delFavor?Picture_id=" + picture_id, (result) => {
->>>>>>> pr/2
             if (result.result === 1)
                 getData();
         });
     }
 
 </script>
-
 </html>
