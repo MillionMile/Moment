@@ -36,17 +36,20 @@ module.exports=function () {
                 
     router.get('/picInFolder',(req,res)=>{
         res.render("picturesListInFolder",{
-            folder_id:req.query.folder_id,
+            folderId:req.query.folderId,
         })
     })
            
     router.get('/getPicInFolder',(req,res)=>{
-        operationDao.PicturesOfFavor(req.session["user_id"],req.query.folder_id,(err,result)=>{
+        operationDao.PicturesOfFavor(req.session["user_id"],req.query.folderId,(err,result)=>{
             res.json(result)
         })
     })
 
     router.get('/favorFolders',(req,res)=>{
+        if(!req.session["user_id"]){
+            res.redirect('/')
+        }
         res.render("favorsList")
     })
 

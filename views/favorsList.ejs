@@ -63,10 +63,10 @@
             <a href='javascript:deleteFolder("{{=id}}");'>
             <img src="../img/faxian/x_icon.png" class="x_icon" />
             </a>
-            <a href='/picturesList/picInFolder?folder_id={{=id}}'>
+            <a href='/picturesList/picInFolder?folderId={{=id}}'>
             <img src="../img/faxian/folder.png" class="picture" />
             </a>
-            <a href='/picturesList/picInFolder?folder_id={{=id}}'  class="picture_tag">
+            <a href='/picturesList/picInFolder?folderId={{=id}}'  class="picture_tag">
             {{= folder_name}}
             </a>
         </div>
@@ -96,8 +96,8 @@
     }
 
     //Ajax删除文档
-    function deleteFolder(folder_id) {
-        $.get("/favor/deleteFolder?folder_id=" + folder_id, (result) => {
+    function deleteFolder(folderId) {
+        $.get("/favor/deleteFolder?folderId=" + folderId, (result) => {
             if (result.result == 1)
                 getData();
         });

@@ -26,10 +26,10 @@ module.exports=function () {
         // 1.删除相应的收藏动作
         // 3.在user的folders列表中删除folder的id
         // 2.删除文件夹
-        let folder_id=req.query.folder_id
-        operationDao.FavorsAllDeleteByFolder(folder_id,()=>{
-            userDao.FolderDelete(req.session["user_id"],folder_id,()=>{
-               folderDao.remove({_id:folder_id},()=>{
+        let folderId=req.query.folderId
+        operationDao.FavorsAllDeleteByFolder(folderId,()=>{
+            userDao.FolderDelete(req.session["user_id"],folderId,()=>{
+               folderDao.remove({_id:folderId},()=>{
                    res.send({"result":1})
                })
             })
@@ -51,14 +51,14 @@ module.exports=function () {
         //1.判断是否已经被收藏
         //  Y：1.返回信息
         //  N：2.收藏
-        let folder_id=req.body.folder_id
+        let folderId=req.body.folderId
         let picture=req.body.pictureId
         operationDao.OperationsCount({user_id:req.session["user_id"]},picture,{favor:{$exists:true}},(err,result)=>{
            if(result>0){
                console.log(result)
                res.send({"result":-1})
            }else{
-               operationDao.PictureFavor(req.session["user_id"],picture,folder_id,()=>{
+               operationDao.PictureFavor(req.session["user_id"],picture,folderId,()=>{
                   res.send({"result":1})
                })
            }

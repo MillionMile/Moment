@@ -80,7 +80,7 @@
             //模板函数
             let compiled = _.template($("#template").html());
             //清空全部留言中的所有节点
-            $("#isFolder").html("<select name=\"folder_id\" class=\"form-control\" id=\"folders\"></select> " +
+            $("#isFolder").html("<select name=\"folderId\" class=\"form-control\" id=\"folders\"></select> " +
                 "<button id=\"favor\" type=\"button\" class=\"btn btn-success\" onClick=\"doFavor();\">收藏</button>");
             $("#folders").html("");
             let le = result.length;
@@ -130,7 +130,7 @@
         $("#favor-fail").hide();
         $("#favor-success").hide();
         $.post("/favor/doFavor", {
-            "folder_id": $("#folders").val(),
+            "folderId": $("#folders").val(),
             "pictureId": "<%=pictureId%>",
         }, (result) => {
             if (result.result === -1) {

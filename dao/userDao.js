@@ -22,18 +22,18 @@ userSchema.statics.findUFoldersById = function (_id,cb){
     this.findById({ _id: _id },{folders:1}).populate('folders').exec(cb)
 }
 //3.添加新的收藏夹
-userSchema.statics.FolderAdd = function (_id,folder_id,cb) {
+userSchema.statics.FolderAdd = function (_id,folderId,cb) {
     this.update(
         {_id:_id},
-        {'$push':{folders:{ _id: folder_id}}},
+        {'$push':{folders:{ _id: folderId}}},
         cb
     )
 }
 //4.删除收藏夹
-userSchema.statics.FolderDelete = function (_id,folder_id,cb) {
+userSchema.statics.FolderDelete = function (_id,folderId,cb) {
     this.update(
         {_id:_id},
-        {'$pull':{folders:folder_id}},
+        {'$pull':{folders:folderId}},
         cb
     )
 }

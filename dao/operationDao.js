@@ -23,8 +23,8 @@ OperationSchema.statics.PictureIssue=function (user_id,pictureId,cb) {
     this.create({user_id:user_id, picture:pictureId, issue:{}},cb)
 }
 //2.收藏了新的图片
-OperationSchema.statics.PictureFavor=function (user_id,pictureId,folder_id,cb) {
-    this.create({user_id:user_id,picture:pictureId,favor:{folder:folder_id}},cb)
+OperationSchema.statics.PictureFavor=function (user_id,pictureId,folderId,cb) {
+    this.create({user_id:user_id,picture:pictureId,favor:{folder:folderId}},cb)
 }
 //3.点赞新的图片
 OperationSchema.statics.PictureVote=function (user_id,pictureId,cb){
@@ -47,8 +47,8 @@ OperationSchema.statics.UsersOfVote=function(pictureId,cb){
     .populate('user_id').exec(cb)
 }
 //7.遍历某人某收藏夹的所有图片
-OperationSchema.statics.PicturesOfFavor=function (user_id,folder_id,cb) {
-    this.find({$and:[{user_id: user_id},{'favor.folder':folder_id},{favor:{$exists:true}},]},{picture:1})
+OperationSchema.statics.PicturesOfFavor=function (user_id,folderId,cb) {
+    this.find({$and:[{user_id: user_id},{'favor.folder':folderId},{favor:{$exists:true}},]},{picture:1})
         .populate('picture').exec(cb)
 }
 //8.遍历某图所有评论
@@ -61,8 +61,8 @@ OperationSchema.statics.CommentsOfPicture=function (pictureId,cb) {
     .populate('user_id').sort({date:-1}).exec(cb)
 }
 //9.删除某收藏夹对应的图片所有收藏操作
-OperationSchema.statics.FavorsAllDeleteByFolder=function (folder_id,cb) {
-    this.remove({'favor.folder':folder_id},cb)
+OperationSchema.statics.FavorsAllDeleteByFolder=function (folderId,cb) {
+    this.remove({'favor.folder':folderId},cb)
 }
 //10.删除某张图片对应的所有操作
 OperationSchema.statics.OperationsAllDeleteByPicture=function (pictureId,cb) {
