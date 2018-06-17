@@ -129,7 +129,8 @@
 }
 
 #picture_info{
-	width:100%;
+	width:98%;
+	margin-top:0.5em; 
 }
 
 #picture_title{

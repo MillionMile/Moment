@@ -82,6 +82,9 @@ body {
 
 .zhuanfa_icon {
 	float: right;
+	margin:7px 7px 0 0;
+	cursor: pointer;
+	width:35px;
 }
 
 .pic_title{
@@ -103,5 +106,21 @@ body {
 	/*display: block;*/
 	border-radius: 5px;
 	background: #000;
-	color: #fff;
+	color: #fff !important;
 }
+
+.favorfolderspicture{
+	width:150px !important;
+	height:auto !important;
+}
+
+.x_icon{
+	width:23px;
+}
+
+
+.favorfolderdiv{
+	height:auto !important;
+	background:none !important;
+}
+
