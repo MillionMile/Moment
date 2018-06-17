@@ -179,15 +179,24 @@ const userDao=require("../dao/userDao.js");
 // })
 
 // //方法10
-operationDao.OperationsAllDeleteByPicture("5b07fd6862c56434d0154537",(err,res)=>{
-        if(err)
-        console.log(err);
-        else
-        console.log(res);
-})
+// operationDao.OperationsAllDeleteByPicture("5b0a717babeaa124d8d554df",(err,res)=>{
+//         if(err)
+//         console.log(err);
+//         else
+//         console.log(res);
+// })
+
 
 //方法8
 // operationDao.CommentsOfPicture("5b07fd6862c56434d0154537",(err,res)=>{
+//         if(err)
+//         console.log(err);
+//         else
+//         console.log(res);
+// })
+
+//方法7
+// operationDao.PicturesOfFavor("5b04375510fe443358c0cf63","5b140927283af20ea473e1ef",(err,res)=>{
 //         if(err)
 //         console.log(err);
 //         else

@@ -50,6 +50,28 @@ nav span a p{
     border-radius: 10px;
 
 }
+
+#justlogin{
+    float: right;
+    border-radius: 50%;
+    background-color:#C4C4C4;
+    height: 25px;
+    width: 25px;
+    border: 2px solid white;
+    margin-top:6px;
+}
+#rightname{
+    float: right;
+    color: white;
+    font-family: "微软雅黑";
+    font-weight: 600;
+    font-size: 16px;
+    padding-left: 10px;
+    margin-right: 20px;
+    margin-top:10px;
+
+}
+
 nav a div p{
     margin-left: 24px;
     margin-top: 22px;

@@ -2,17 +2,17 @@ const userDao=require("../dao/userDao.js");
 const folderDao = require('../dao/folderDao')
 
 // //写入数据
-// userDao.create(
-//     {   username:'mygod',
-//         password:"12333456",
-//         sex     :"男",
-//         avatar:'img/faxian/user_icon.png'
-//     },(err,result)=>{
-//     if(err)
-//         console.log("插入失败",err);
-//     else
-//     console.log("插入成功",result);
-// })
+userDao.create(
+    {   username:'eeeeee',
+        password:"123",
+        sex     :"男",
+        avatar:'img/faxian/user_icon.png'
+    },(err,result)=>{
+    if(err)
+        console.log("插入失败",err);
+    else
+    console.log("插入成功",result);
+})
 
 //查找数据
 // userDao.find(
@@ -100,7 +100,7 @@ const folderDao = require('../dao/folderDao')
 //     if (err)
 //         console.log("根据Id查找失败",err);
 //     else
-//         console.log("根据Id查找成功",res);
+//         console.log("根据Id查找成功",res.folders[0].folder_name);
 //         })
 
 //使用静态方法三
