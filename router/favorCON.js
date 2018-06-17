@@ -37,14 +37,15 @@ module.exports=function () {
     })
 
     router.get("/",(req,res)=>{
-        let pictureId=req.query.pictureId
+        let pictureId=req.query.pictureId;
         userDao.findUFoldersById(req.session["user_id"],(err,result)=>{
             res.render("favor",{
                 list:result.folders,
                 pictureId:pictureId,
-            })
-        })
-    })
+                isLogin:!!req.session['user_id']
+            });
+        });
+    });
 
     router.post("/doFavor",(req,res)=>{
         //添加图片到某收藏夹

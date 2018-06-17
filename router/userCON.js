@@ -65,5 +65,9 @@ module.exports = function () {
 			res.send({ result: user.avatar })
 		})
 	})
+
+	router.get('/personalCenter', (req, res) => {
+		res.render("personalCenter", { isLogin: !!req.session["user_id"] })
+	})
 	return router
 }
