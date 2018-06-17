@@ -39,12 +39,13 @@ module.exports=function () {
     });
 
     router.get("/",(req,res)=>{
-        let Picture_id=req.query.Picture_id;
+        let pictureId=req.query.pictureId;
         userDao.findUFoldersById(req.session["user_id"],(err,result)=>{
             // console.log(result.folders);
             res.render("favor",{
                 list:result.folders,
-                Picture_id:Picture_id,
+                pictureId:pictureId,
+                isLogin:!!req.session['user_id']
             });
         });
     });

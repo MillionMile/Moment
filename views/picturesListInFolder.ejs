@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>收藏图片</title>
@@ -13,6 +14,7 @@
 </head>
 
 <body>
+
     <%-include public/header.ejs%>
         <div id="main">
             <div id="bigicon">
@@ -28,22 +30,26 @@
 
 <script type="text/template" id="template">
     <div class="fangxiandiv">
-        <div class="fangxiandiv_div">
-            <a href='javascript:deleteFavor("{{=id}}");'>
-                <img src="../img/faxian/x_icon.png" class="x_icon" />
-            </a>
-            <a href="/commentsList?Picture_id={{=id}}">
-                <img src="../img/faxian/samplepicture.png" class="picture" />
-            </a>
-            <a href="/commentsList?Picture_id={{=id}}"  class="picture_tag">
-                {{= title}}
-            </a>
-        </div>
-    </div>
-</script>
+            <div class="fangxiandiv_div">
+                <a  href="/commentsList?Picture_id={{=id}}">
+                    <img src="../img/faxian/samplepicture.png" class="picture" />
+                </a>
+                <a  href="/commentsList?Picture_id={{=id}}" class="picture_tag">
+                    {{= title}}
+                </a>
+                <div>
+                    <img src="../img/faxian/user_icon.png" class="user_icon" />
+                    <span class="pic_title">
+                            {{= title}}
+                    </span>
 
-<script src="../js/jquery-1.11.3.min.js"></script>
-<script src="../js/underscore-noflect.js"></script>
+                    <a href='javascript:deleteFavor("{{=id}}");'>
+                            <img src="../img/faxian/remove_favor_icon.png" class="zhuanfa_icon" />
+                        </a>   
+                </div>
+            </div>
+        </div>
+</script>
 
 <script type="text/javascript">
     getData();
@@ -76,4 +82,5 @@
     }
 
 </script>
+
 </html>

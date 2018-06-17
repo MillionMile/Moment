@@ -8,7 +8,6 @@ const path = require('path')
 module.exports = function () {
 	const router = Router()
 	router.post('/createUser', (req, res) => {
-		console.log('youma');
 		const { username, password, confirm } = req.body
 		if (password !== confirm) {
 			res.send('两次输入的密码不一样')
@@ -65,6 +64,10 @@ module.exports = function () {
 			if (err) return res.send({ result: -1 })
 			res.send({ result: user.avatar })
 		})
+	})
+
+	router.get('/personalCenter', (req, res) => {
+		res.render("personalCenter", { isLogin: !!req.session["user_id"] })
 	})
 	return router
 }
