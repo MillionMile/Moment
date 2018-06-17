@@ -1,8 +1,8 @@
 用户模块：
-    1. 登录(password,username)
-    2. 注册(password,username)
-    3. 上传头像(picture=data url)
-    4. 获取用户头像
+    1. 登录(password,username)（完成）
+    2. 注册(password,username)（完成）
+    3. 上传头像(picture=data url)（完成）
+    4. 获取用户头像（完成）
 图片模块：
     1. 发布图片(picture=data url)
     2. 删除图片
