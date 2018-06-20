@@ -1,3 +1,5 @@
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/underscore-noflect.js"></script>
 <link rel="stylesheet" href="/css/sighup.css">
 <link rel="stylesheet" href="/css/login.css">
 <link rel="stylesheet" href="/css/authority.css">
@@ -7,11 +9,11 @@
     <input type="hidden" value="<%=locals.isLogin%>" id="isLogin">
     <nav id="nav_box">
         <!--导航栏-->
-        <a href="#" onclick="nav_side1()">
+        <!-- <a href="#" onclick="nav_side1()">
             <span>
                 <img src="/img/icon/折叠.png">
             </span>
-        </a>
+        </a> -->
         <span>
             <a href="/">
                 <p>首页</p>
@@ -32,11 +34,11 @@
                 <p>热门</p>
             </a>
         </span>
-        <span>
+        <!-- <span>
             <a href="/picturesList/rank">
                 <p>今日排行</p>
             </a>
-        </span>
+        </span> -->
         <%if(locals.isLogin==true){%>
             <span>
                 <a href="/picturesList/favorFolders">
@@ -97,7 +99,7 @@
         </div>
         <form action="/user/createUser" method="post">
             <input type="text" name="username" placeholder="请填写您的用户名">
-            <input type="text" placeholder="请填写您的邮箱">
+            <!-- <input type="text" placeholder="请填写您的邮箱"> -->
             <input type="password" name="password" placeholder="请填写您的密码">
             <input type="password" name="confirm" placeholder="请再次填写您的密码">
             <input class="tijiao" type="submit" value="注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;册">

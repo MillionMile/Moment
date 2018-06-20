@@ -10,15 +10,16 @@ module.exports = function () {
 	router.post('/createUser', (req, res) => {
 		const { username, password, confirm } = req.body
 		if (password !== confirm) {
-			res.send('两次输入的密码不一样')
+			res.send('<script>alert("两次输入的密码不一样!")history.back()</script>')
 		}
 
 		userDao.createUser(username, password, (err, user) => {
 			if (err) {
-				return res.send({ result: -1 })
+				res.send('<script>alert("注册失败！")history.back()</script>')
+				return
 			}
 
-			res.send({ result: 1 })
+			res.redirect('/')
 
 		})
 	})
