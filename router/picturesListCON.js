@@ -1,13 +1,144 @@
-const app=require('express')
-const pictureDao=require("../dao/pictureDao")
-const operationDao=require("../dao/operationDao.js")
-const userDao=require("../dao/userDao.js")
+const app = require('express');
+const pictureDao = require("../dao/pictureDao");
+const operationDao = require("../dao/operationDao.js");
+const userDao = require("../dao/userDao.js");
 const folderDao = require('../dao/folderDao')
+const multer = require('multer')
+const storage = multer.memoryStorage()
+const upload = multer({ storage })
 
-module.exports=function () {
-    let router=app.Router()
+module.exports = function () {
+	let router = app.Router();
 
-    router.get('/trendingPic',(req,res)=>{
+	// 上传图片
+	router.post('/uploadPic', upload.single('picture'), (req, res) => {
+
+		const { title, abstract } = req.body
+
+		const base64Url = req.file.buffer.toString('base64')
+		const formattedUrl = 'data:' + req.file.mimetype + ';base64,' + base64Url
+
+		const Picture = pictureDao
+		const newPicture = new Picture({
+			title, abstract, path: formattedUrl
+		})
+
+		newPicture.save(err => {
+			if (err) return res.send({ result: -1 })
+			operationDao.PictureIssue(req.session.user_id, newPicture._id,
+				(err) => {
+					if (err) return res.send({ result: -1 })
+					res.send({ result: newPicture })
+				}
+			)
+		})
+	})
+
+	// 删除图片
+	router.delete('/removePic', (req, res) => {
+		const { id } = req.query
+		pictureDao.removePicture(id, (err) => {
+			if (err) {
+				console.log(err)
+				return res.send({ result: -1 })
+			}
+
+			operationDao.OperationsAllDeleteByPicture(id, (err) => {
+				if (err) {
+					console.log(err)
+					return res.send({ result: -1 })
+				}
+
+				res.send({ result: 1 })
+
+			})
+
+		})
+
+	})
+
+	// 更新图片描述
+	router.post('/updatePicAbstract', (req, res) => {
+		const { abstract, id } = req.body
+		
+		pictureDao.AbstractUpdate(id, abstract, (err) => {
+			if (err) {
+				console.log(err)
+				return res.send({ result: -1 })
+			}
+
+			res.send({ result: 1 })
+		})
+	})
+
+	// 获取图片详情
+	router.get('/getPicDetail', (req, res) => {
+		const { id } = req.query
+		pictureDao.findOne({ _id: id }, (err, picture) => {
+			if (err) {
+				console.log(err)
+				return res.send({ result: -1 })
+			}
+
+			res.send({ result: picture })
+
+		})
+	})
+
+	// 获取个人的图片列表
+	router.get('/getPicList', (req, res) => {
+
+		const { user_id: id } = req.session
+
+		operationDao.getPersonalPictureList(id, (err, operations) => {
+			if (err) {
+				console.log(err)
+				return res.send({ result: -1 })
+			}
+
+			const pictureList = operations.map(operation => {
+				return operation.picture
+			})
+
+			res.send({ result: pictureList })
+		})
+	})
+
+	// 获取最新的图片
+	router.get('/getLatestPics', (req, res) => {
+
+		// TODO:预留做分页
+		const { page } = req.query
+
+		// 最新的图片数量
+		const numOfpics = 10
+
+		operationDao.getLatestPictures(numOfpics, async (err, operations) => {
+			if (err) {
+				console.log(err)
+				return res.send({ result: -1 })
+			}
+
+			operations = await Promise.all(operations.map(operation => {
+				return operation
+					.populate({
+						path: 'picture'
+					})
+					.execPopulate()
+			}))
+
+			const pictures = operations.map(operation => {
+				return operation.picture
+			})
+
+			res.send({ result: pictures })
+
+		})
+
+
+	})
+  
+  router.get('/trendingPic',(req,res)=>{
         res.render("trendingPic",{isLogin: !!req.session["user_id"]})
     })
 
@@ -119,7 +250,7 @@ module.exports=function () {
     //仅链接页面，未添加功能
         res.render("pictureManage", { isLogin: !!req.session["user_id"] });
     })
-    
-    return router
-}
 
+
+	return router;
+};

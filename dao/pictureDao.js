@@ -4,7 +4,7 @@ const { Schema } = mongoose
 //创建Picture的schema结构
 const PictureSchema = new Schema({
     title: { type: String },
-    path: { type: String  },
+    path: { type: String },
     date: { type: Date, default: Date.now() },
     tag: { type: String, default: "" },
     abstract: { type: String, default: "" },
@@ -25,5 +25,10 @@ PictureSchema.statics.Pictures = function (cb) {
     this.find(cb)
 }
 
-module.exports=mongoose.model('Picture',PictureSchema)
+// 4.删除某个图片
+PictureSchema.statics.removePicture = function (_id, cb) {
+	return this.remove({ _id }, cb)
+}
+
+module.exports=mongoose.model('Picture',PictureSchema);
 

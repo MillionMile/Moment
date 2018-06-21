@@ -52,10 +52,6 @@ OperationSchema.statics.PicturesOfFavor=function (user_id,folderId,cb) {
         .populate('picture').exec(cb)
 }
 //8.遍历某图所有评论
-// OperationSchema.statics.CommentsOfPicture=function (pictureId,limitNumber,page,cb) {
-//     this.find({$and:[{picture:pictureId},{comment:{$exists:true}}]},{user_id:1,comment:1,date:1})
-//     .populate('user_id').limit(limitNumber).skip(page*limitNumber).exec(cb)
-// }
 OperationSchema.statics.CommentsOfPicture=function (pictureId,cb) {
     this.find({$and:[{picture:pictureId},{comment:{$exists:true}}]},{user_id:1,comment:1,date:1})
     .populate('user_id').sort({date:-1}).exec(cb)
@@ -69,4 +65,23 @@ OperationSchema.statics.OperationsAllDeleteByPicture=function (pictureId,cb) {
     this.remove({picture:pictureId},cb)
 }
 
-module.exports=mongoose.model('Operation',OperationSchema)
+// 11. 获取某人发布的所有图片
+OperationSchema.statics.getPersonalPictureList = function (user_id, cb) {
+	return this.find({
+		user_id,
+		favor: { $exists: false },
+		vote: { $exists: false },
+		comment: { $exists: false },
+	}, cb)
+}
+
+// 12. 获取最新的前n个图片
+OperationSchema.statics.getLatestPictures = function (num, cb) {
+	return this.find({
+		favor: { $exists: false },
+		vote: { $exists: false },
+		comment: { $exists: false },
+	}).sort({ date: -1 }).limit(num).exec(cb)
+}
+
+module.exports=mongoose.model('Operation',OperationSchema);

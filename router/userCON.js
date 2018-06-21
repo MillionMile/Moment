@@ -3,7 +3,6 @@ const userDao = require('../dao/userDao')
 const multer = require('multer')
 const storage = multer.memoryStorage()
 const upload = multer({ storage })
-const path = require('path')
 
 module.exports = function () {
 	const router = Router()
@@ -12,7 +11,6 @@ module.exports = function () {
 		if (password !== confirm) {
 			res.send('<script>alert("两次输入的密码不一样!")history.back()</script>')
 		}
-
 		userDao.createUser(username, password, (err, user) => {
 			if (err) {
 				res.send('<script>alert("注册失败！")history.back()</script>')
@@ -44,6 +42,11 @@ module.exports = function () {
 		})
 	})
 
+	router.get('/logout',(req,res)=>{
+		req.session.destroy();
+		res.redirect('/')
+	})
+
 	router.post('/avatar', upload.single('avatar'), (req, res) => {
 		const base64Url = req.file.buffer.toString('base64')
 		const formattedUrl = 'data:' + req.file.mimetype + 'base64,' + base64Url
@@ -70,5 +73,6 @@ module.exports = function () {
 	router.get('/personalCenter', (req, res) => {
 		res.render("personalCenter", { isLogin: !!req.session["user_id"] })
 	})
+
 	return router
 }
