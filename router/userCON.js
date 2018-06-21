@@ -3,7 +3,6 @@ const userDao = require('../dao/userDao')
 const multer = require('multer')
 const storage = multer.memoryStorage()
 const upload = multer({ storage })
-const path = require('path')
 
 module.exports = function () {
 	const router = Router()

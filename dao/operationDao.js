@@ -69,4 +69,23 @@ OperationSchema.statics.OperationsAllDeleteByPicture=function (Picture_id,cb) {
     this.remove({picture:Picture_id},cb);
 }
 
+// 11. 获取某人发布的所有图片
+OperationSchema.statics.getPersonalPictureList = function (user_id, cb) {
+	return this.find({
+		user_id,
+		favor: { $exists: false },
+		vote: { $exists: false },
+		comment: { $exists: false },
+	}, cb)
+}
+
+// 12. 获取最新的前n个图片
+OperationSchema.statics.getLatestPictures = function (num, cb) {
+	return this.find({
+		favor: { $exists: false },
+		vote: { $exists: false },
+		comment: { $exists: false },
+	}).sort({ date: -1 }).limit(num).exec(cb)
+}
+
 module.exports=mongoose.model('Operation',OperationSchema);

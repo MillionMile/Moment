@@ -25,7 +25,8 @@ app.use(express.static("./public"));
 //设置路由
 app.use('/', router());
 
-app.listen(3000, function () {
+app.listen(3001, function (err) {
+	if (err) console.log(err)
     console.log("Server listening on port 3000");
 });
 

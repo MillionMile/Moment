@@ -1,8 +1,6 @@
-const app = require('../app')
-const request = require('supertest')(app)
+const request = require('../util/request')
 const assert = require('assert')
 const userDao = require('../dao/userDao')
-const fs = require('fs')
 const path = require('path')
 
 describe('/user', () => {
@@ -46,7 +44,8 @@ describe('/user', () => {
             const res = await request
                 .post('/user/login')
                 .send({ username, password })
-                .expect({ result: 1 })
+
+			assert(res.text !== '')
 
             const setCookie = res.header['set-cookie'][0]
             assert(setCookie)
@@ -59,11 +58,11 @@ describe('/user', () => {
 
             const wrongPassword = '123'
 
-            await request
+            const res = await request
                 .post('/user/login')
-                .send({ username, password: wrongPassword })
-                .expect({ result: -1 })
-
+				.send({ username, password: wrongPassword })
+				
+			assert(res.text !== '')			
         })
 
     })
@@ -73,7 +72,6 @@ describe('/user', () => {
         it('should success', async () => {
 
             const filePath = path.resolve(__dirname, '../public/img/avatar.jpg')
-            const fileBuffer = fs.readFileSync(filePath)
 
             await request
                 .post('/user/avatar')
