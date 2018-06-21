@@ -34,7 +34,6 @@ module.exports = function () {
                             res.render("commentsList",
                                 {
                                     pictureId: req.query.pictureId,
-                                    isLogin: !!req.session["user_id"],
                                     username: req.session["username"],
                                     isVote: isVote,
                                     voteCount: voteCount,

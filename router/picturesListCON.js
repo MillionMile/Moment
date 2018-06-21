@@ -188,7 +188,7 @@ module.exports = function () {
     })
 
     router.get('/searchPicture',(req,res)=>{
-        pictureDao.FindByTagNAbstract( new RegExp(req.query.keyword),(err, data) => {
+        pictureDao.FindByTagNAbstract(req.query.keyword,(err, data) => {
             if(!data||data.length===0){
                 res.json(false)
                 return

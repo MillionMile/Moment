@@ -17,7 +17,7 @@ PictureSchema.statics.AbstractUpdate=function(pictureId,update,cb){
 }
 //2.根据tag和abstract实现模糊查询
 PictureSchema.statics.FindByTagNAbstract=function(like,cb){
-    this.find( {$or : [{title:like},{tag : like},{abstract :like}]},cb)
+    this.find({ $or: [{ title: { $regex: like } }, { tag: { $regex: like } }, { abstract: { $regex: like } }] }, cb)
 
 }
 //3.遍历所有图片
