@@ -4,7 +4,7 @@ const { Schema } = mongoose
 //创建Picture的schema结构
 const PictureSchema = new Schema({
     title: { type: String },
-    path: { type: String, index: { unique: true, dropDups: true } },
+    path: { type: String  },
     date: { type: Date, default: Date.now() },
     tag: { type: String, default: "" },
     abstract: { type: String, default: "" },
