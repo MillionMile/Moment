@@ -32,7 +32,7 @@
     <div class="fangxiandiv">
             <div class="fangxiandiv_div">
                 <a  href="/commentsList?pictureId={{=id}}">
-                    <img src="../img/faxian/samplepicture.png" class="picture" />
+                    <img src="{{=path}}" class="picture" />
                 </a>
                 <a  href="/commentsList?pictureId={{=id}}" class="picture_tag">
                     {{= title}}
@@ -65,6 +65,7 @@
                 //数据绑定
                 let html = compiled({
                     title: result[i].picture.title,
+                    path :result[i].picture.path,
                     id: result[i].picture._id,
                 });
                 //DOM操作，添加节点

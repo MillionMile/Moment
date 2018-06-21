@@ -13,7 +13,7 @@ module.exports = function () {
 		}
 		userDao.createUser(username, password, (err, user) => {
 			if (err) {
-				res.send('<script>alert("注册失败！")history.back()</script>')
+				res.send('<script>alert("用户已存在，注册失败！")history.back()</script>')
 				return
 			}
 
@@ -49,7 +49,7 @@ module.exports = function () {
 
 	router.post('/avatar', upload.single('avatar'), (req, res) => {
 		const base64Url = req.file.buffer.toString('base64')
-		const formattedUrl = 'data:' + req.file.mimetype + 'base64,' + base64Url
+		const formattedUrl = 'data:' + req.file.mimetype + ';base64,' + base64Url
 
 		userDao.findUserById(req.session.user_id, (err, user) => {
 			if (err || !user) return res.send({ result: -1 })
@@ -65,13 +65,15 @@ module.exports = function () {
 
 	router.get('/avatar', (req, res) => {
 		userDao.findUserById(req.session.user_id, (err, user) => {
-			if (err) return res.send({ result: -1 })
-			res.send({ result: user.avatar })
+			if (err) return res.send({isLogin: !!req.session["user_id"] })
+			res.send({ avatar: user.avatar,isLogin: !!req.session["user_id"]})
 		})
 	})
 
 	router.get('/personalCenter', (req, res) => {
-		res.render("personalCenter", { isLogin: !!req.session["user_id"] })
+		userDao.findById(req.session.user_id,(err,user)=>{
+			res.render("personalCenter", {user:user})	
+		})
 	})
 
 	return router

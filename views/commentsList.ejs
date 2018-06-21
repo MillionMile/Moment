@@ -7,8 +7,6 @@
     <title>全部留言</title>
     <link rel="stylesheet" type="text/css" href="css/tupianxiangqing.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
     <style type="text/css">
         #picturgroup {
             width: 1075px;
@@ -41,7 +39,7 @@
             <div id="picturgroup">
                 <div style="padding: 1em 1.5em 0.5em;">
                     <div style="float: left;">
-                        <a href="#" id="picture_title">富士山风光富士山风光</a>
+                        <a href="#" id="picture_title"><%=picture.title%></a>
                         <a href="#" style="text-decoration:none;display: inline-block;" id="xin_btn">
                             <%if(isVote){%>
                                 <img src="img/icon/爱心变化.png" style="vertical-align: bottom;width:30px" />
@@ -74,7 +72,7 @@
                                     <%}%>
                     </a>
                 </div>
-                <img src="img/fushishan.png" id="picture_info" />
+                <img style="margin-left: 10px" src="<%=picture.path%>" id="picture_info" />
                 <br />
                 <br />
                 <br /> &emsp;&emsp;

@@ -1,6 +1,7 @@
 const app = require('express')
 const operationDao = require("../dao/operationDao.js")
 const userDao=require("../dao/userDao.js")
+const pictureDao=require("../dao/pictureDao.js")
 const folderDao=require("../dao/folderDao.js")
 
 module.exports=function () {
@@ -39,13 +40,15 @@ module.exports=function () {
     router.get("/",(req,res)=>{
         let pictureId=req.query.pictureId;
         userDao.findUFoldersById(req.session["user_id"],(err,result)=>{
-            res.render("favor",{
-                list:result.folders,
-                pictureId:pictureId,
-                isLogin:!!req.session['user_id']
-            });
-        });
-    });
+            pictureDao.findById(pictureId,(err,picture)=>{
+                res.render("favor",{
+                    list:result.folders,
+                    pictureId:pictureId,
+                    picture:picture
+                })
+            })
+        })
+    })
 
     router.post("/doFavor",(req,res)=>{
         //添加图片到某收藏夹

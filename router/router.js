@@ -14,7 +14,7 @@ module.exports = function () {
   router.use('/favor', favorCON())
   router.use('/user', userCON())
   router.use('/', (req, res) => {
-    res.render("index", { isLogin: !!req.session["user_id"] })
+    res.render("index")
   })
 
   return router

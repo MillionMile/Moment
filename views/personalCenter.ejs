@@ -9,29 +9,38 @@
 		<link rel="stylesheet" href="../CSS/authority.css">
 		<link rel="stylesheet" href="../CSS/login.css">
 		<link rel="stylesheet" href="../CSS/sighup.css">
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
 		<script src="../JS/side.js"></script>
 	</head>
 <style>
 	.fangxiandiv_div{
 		background: none;
 	}
+	#success,
+	#fail {
+		display: none; 
+		margin-top : 5px;
+		margin-left: 80px;
+		width: 50%;
+		height: 50px;
+	}
 </style>
 	<body>
-			<%-include public/header.ejs%>
+		<%-include public/header.ejs%>
 	<div id="main">
 			<div id="picturgroup">
 				<div id="gereninform">
 					<h2>个人信息</h2>
-				<form>
+				<form action="/user/avatar" method="POST" enctype="multipart/form-data">
 					<hr/>
 					<div style="margin-left:4em;text-align: center;width:100px;margin-top: 1em;vertical-align: top; display: inline-block;">
-						<img id="gerenxinxitouxiang" src="/img/faxian/xin.png" />
-						<br> asdfasfas
-						<input type="file"/>				
+						<img id="gerenxinxitouxiang" src="<%=user.avatar%>" />
+						<h3 style="color: rebeccapurple"><%=user.username%></h3>
+						<input type="file" name="avatar"/>				
 					</div>
 					<div id="xinxixiugaiyou">
 						<p>修改密码:<input type="text"/></p>
-						<p style="margin-top: 2em;">性别:<label><input name="sex" type="radio"/>男</label><label><input name="sex" type="radio" style="margin-left:4em;"/>女</label></p>
+						<p style="margin-top: 2em;">性别:<label><input name="sex" type="radio" checked/>男</label><label><input name="sex" type="radio" style="margin-left:4em;"/>女</label></p>
 						<p>联系电话:<input type="text"/></p>
 						<div style="margin-top:6em;">
 						<input type="submit" name="" style="width: 150px;" class="picture_info_submit" value="提交" />
@@ -44,23 +53,29 @@
 			<h2>上传图片</h2>
 			<hr />
 			<div class="tupianguanli">
-				<form action="">
+				<div class="alert alert-success" role="alert" id="success">
+					<a href="#" class="alert-link">图片上传成功</a>
+				</div>
+				<div class="alert alert-danger" role="alert" id="fail">
+					<a href="#" class="alert-link">图片上传失败</a>
+				</div>
+				<form  id="uploadPicForm" enctype="multipart/form-data">
 					<p>1.上传图片名称：</p>
-					<input type="text" name="" id="picture_title_input" value="" placeholder="请给图片标题命名" />
+					<input type="text" name="title" id="picture_title_input" value="" placeholder="请给图片标题命名" />
 					<!--<button style="height:2.2em;">确定</button>-->
 					<div>
 						<div class="shangchuanwenjian_2_div">
 							<p>2.请上传图片文件：</p>
-							<input type="file" id="picture_file_input" />
+							<input name="picture" type="file" id="picture_file_input" />
 						</div>
 						<div class="shangchuanwenjian_2_div">
 							<p>3.备注：</p>
-							<textarea name="" rows="" cols="" id="picture_info_textarea">图片备注</textarea>
+							<textarea name="abstract" rows="" cols="" id="picture_info_textarea">图片备注</textarea>
 						</div>
 					</div>
 					<br />
 					<div>
-						<input type="submit" name="" class="picture_info_submit" value="提交" />
+						<input type="button" id="submit" class="picture_info_submit" value="提交" />
 						<input type="reset" name="" class="picture_info_reset" value="重置" />
 					</div>
 				</form>
@@ -191,5 +206,28 @@
 	</div>
 		<div id="bac-ss" onclick="mybacclick()"></div>
 	</body>
-
+<script type="text/javascript">
+	//Ajax提交表单
+    $("#submit").click(() => {
+        $("#fail").hide();
+        $("#success").hide();
+		$.ajax({
+			url: '/picturesList/uploadPic',
+			type: 'POST',
+			data: new FormData($("#uploadPicForm")[0]),
+			dataType: 'JSON',
+			cache: false,                     
+			processData: false,              
+			contentType: false,
+			success:function (result) {
+				if (result.result === -1) {
+					$("#fail").fadeIn();
+				} else if (result.result === 1) {
+					//提交成功
+					$("#success").fadeIn();
+				}
+			}
+		})	
+	})
+</script>
 </html>

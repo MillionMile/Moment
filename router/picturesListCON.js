@@ -28,7 +28,7 @@ module.exports = function () {
 			operationDao.PictureIssue(req.session.user_id, newPicture._id,
 				(err) => {
 					if (err) return res.send({ result: -1 })
-					res.send({ result: newPicture })
+					res.send({ result: 1 })
 				}
 			)
 		})
@@ -139,7 +139,7 @@ module.exports = function () {
 	})
   
   router.get('/trendingPic',(req,res)=>{
-        res.render("trendingPic",{isLogin: !!req.session["user_id"]})
+        res.render("trendingPic")
     })
 
     router.get('/getTrendingPic',(req,res)=>{
@@ -167,7 +167,7 @@ module.exports = function () {
                 
     router.get('/picInFolder',(req,res)=>{
         res.render("picturesListInFolder",{
-            folderId: req.query.folderId, isLogin: true
+            folderId: req.query.folderId
         })
     })
            
@@ -178,7 +178,7 @@ module.exports = function () {
     })
 
     router.get('/favorFolders',(req,res)=>{
-        res.render("favorsList", { isLogin: true });
+        res.render("favorsList");
     })
 
     router.get('/getFavorFolders',(req,res)=>{
@@ -218,7 +218,7 @@ module.exports = function () {
     router.get('/discover',(req,res)=>{
     //编辑自己上传的某张图片  picture_id
     //仅链接页面，未添加功能
-        res.render("discover", { isLogin: !!req.session["user_id"], urlPath: "discover" })
+        res.render("discover")
     })
 
     router.get('/getDiscover',(req,res)=>{
@@ -228,7 +228,7 @@ module.exports = function () {
     router.get('/freshNew',(req,res)=>{
     //编辑自己上传的某张图片  picture_id
     //仅链接页面，未添加功能
-        res.render("freshNew", { isLogin: !!req.session["user_id"], urlPath: "freashNew" })
+        res.render("freshNew")
     })
    
     router.get('/getFreshNew',(req,res)=>{
@@ -238,7 +238,7 @@ module.exports = function () {
     router.get('/rank',(req,res)=>{
     //编辑自己上传的某张图片  picture_id
     //仅链接页面，未添加功能
-        res.render("rank", { isLogin: !!req.session["user_id"] })
+        res.render("rank")
     })
 
     router.get('/getRank',(req,res)=>{
@@ -248,7 +248,7 @@ module.exports = function () {
     router.get('/pictureManage',(req,res)=>{
     //编辑自己上传的某张图片  picture_id
     //仅链接页面，未添加功能
-        res.render("pictureManage", { isLogin: !!req.session["user_id"] });
+        res.render("pictureManage");
     })
 
 
