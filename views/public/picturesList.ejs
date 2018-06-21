@@ -1,109 +1,127 @@
-<div id="picturgroup" >
+<div id="picturgroup">
     <div id="picturgroup_div" class="pictures">
-
     </div>
 </div>
 
 <script type="text/template" id="template">
-    <div class="fangxiandiv" >
-            <div class="fangxiandiv_div">
-                <div>
-                    {{ if(isVote>=1) { }}
-                    <img src="/img/icon/爱心变化.png" class="xin_icon" />
-                    {{ }else { }}
-                    <img src="/img/icon/爱心.png" class="xin_icon" />
-                    {{ } }}
-                    <span class="zancount" style="color:white">
-                    {{=voteCount}}
-                    </span>
-                </div>
-                <a href="/commentsList?Picture_id={{=id}}">
-                    <img src="/img/faxian/samplepicture.png" class="picture" />
-                </a>
-                <a href="/commentsList?Picture_id={{=id}}" class="picture_tag">
-                    By 作者
-                </a>
-                <div>
-                    <img src="/img/faxian/user_icon.png" class="user_icon" />
-                    <span class="pic_title">
-                            {{=title}}
+        <div class="fangxiandiv" >
+                <div class="fangxiandiv_div">
+                    <div>
+                        {{ if(isVote>=1) { }}
+                        <img src="/img/icon/爱心变化.png" class="xin_icon" />
+                        {{ }else { }}
+                        <img src="/img/icon/爱心.png" class="xin_icon" />
+                        {{ } }}
+                        <span class="zancount" style="color:white">
+                        {{=voteCount}}
                         </span>
-                    {{if(isFavor>=1) { }}
-                    <img src="/img/faxian/remove_favor_icon.png" class="zhuanfa_icon" />
-                     {{ }else { }}
-                    <img src="/img/faxian/favor_icon.png" class="zhuanfa_icon" />
-                    {{ } }}
+                    </div>
+                    <a href="/commentsList?pictureId={{=id}}">
+                        <img src="/img/faxian/samplepicture.png" class="picture" />
+                    </a>
+                    <a href="/commentsList?pictureId={{=id}}" class="picture_tag">
+                        By 作者
+                    </a>
+                    <div>
+                        <img src="/img/faxian/user_icon.png" class="user_icon" />
+                        <span class="pic_title">
+                                {{=title}}
+                            </span>
+                        {{if(isFavor>=1) { }}
+                        <img src="/img/faxian/remove_favor_icon.png" class="zhuanfa_icon" />
+                         {{ }else { }}
+                        <img src="/img/faxian/favor_icon.png" class="zhuanfa_icon" />
+                        {{ } }}
+                    </div>
                 </div>
-            </div>
-            <input type="hidden" value="{{=id}}" class="pic_id">
-    </div>
-</script>
+                <input type="hidden" value="{{=id}}" class="pic_id">
+        </div>
+    </script>
 
 <script>
+    switch ('<%=locals.urlPath %>') {
+        case "discover":
+            //  getData( "/picturesList/getDiscover",{});
+            break;
+        case "freshNew":
+            //  getData( "/picturesList/getFreshNew",{});
+            break;
+        case "rank":
+            //  getData( "/picturesList/getRank",{});
+            break;
+        case "freshNew":
+            //  getData( "/picturesList/getFreshNew",{});
+            break;
+        default:
+            getData()
+    }
 
-    getData();
     //Ajax请求数据
-    function getData(url="/picturesList/GetTrending-Pic",json={}) {
-        $.get(url,json, (result) => {
-            if(!result){
-                $(".pictures").html("<h1>没有相关图片</h1>");
-                return;
+    function getData(url = "/picturesList/getTrendingPic", json = {}) {
+        $.get(url, json, (result) => {
+            if (!result) {
+                $(".pictures").html("<h1>没有相关图片</h1>")
+                return
             }
             //模板函数
-            let compiled = _.template($("#template").html());
+            let compiled = _.template($("#template").html())
             //清空全部留言中的所有节点
-            $(".pictures").html("");
+            $(".pictures").html("")
             for (let i = 0; i < result.length; i++) {
                 //数据绑定
                 let html = compiled({
-                    id:result[i]._id,
-                    title:result[i].title,
+                    id: result[i]._id,
+                    title: result[i].title,
                     voteCount: result[i].voteCount,
                     isVote: result[i].isVote,
                     isFavor: result[i].isFavor,
-                });
+                })
                 //DOM操作，添加节点
-                $(".pictures").append($(html));
+                $(".pictures").append($(html))
             }
             $(".pictures").append($(" <center><div><a href=\"#\"><img src=\"/img/faxian/shuaxin.png\" />\n" +
-                "</a></div> </center>"));
-        });
+                "</a></div> </center>"))
+        })
     }
-
-    $(document).on("click",'.xin_icon',function () {
-        let index = $('.xin_icon').index($(this));
-        let pic = $('.pic_id:eq(' + index + ')').val();
+    $(document).on("click", '.xin_icon', function () {
+        let index = $('.xin_icon').index($(this))
+        let pic = $('.pic_id:eq(' + index + ')').val()
         if ($(this).attr('src') === "/img/icon/爱心.png") {
             if ($('#isLogin').val() === "false") {
-                alert('登录后才能进行点赞!');
-                return;
+                alert('登录后才能进行点赞!')
+                return
             }
-            $(this).attr('src', "/img/icon/爱心变化.png");
-            $.get("/vote/addVote?Picture_id=" + pic, (result) => {
-                if(result.result===1){
-                $('.zancount:eq(' + index + ')').html(parseInt($('.zancount:eq(' + index + ')').html()) + 1);
-                $('.zancount:eq(' + index + ')').css('color', 'rgb(229,28,35)');}
-            });
+            $(this).attr('src', "/img/icon/爱心变化.png")
+            $.get("/vote/addVote?pictureId=" + pic, (result) => {
+                if (result.result === 1) {
+                    $('.zancount:eq(' + index + ')').html(parseInt($('.zancount:eq(' + index + ')').html()) + 1)
+                    $('.zancount:eq(' + index + ')').css('color', 'rgb(229,28,35)')
+                }
+            })
         } else {
-            $(this).attr('src', "/img/icon/爱心.png");
-            $.get("/vote/delVote?Picture_id=" + pic, (result) => {
-                if(result.result===1){
-                $('.zancount:eq(' + index + ')').html(parseInt($('.zancount:eq(' + index + ')').html()) - 1);
-                $('.zancount:eq(' + index + ')').css('color', 'white');}
-            });
+            $(this).attr('src', "/img/icon/爱心.png")
+            $.get("/vote/delVote?pictureId=" + pic, (result) => {
+                if (result.result === 1) {
+                    $('.zancount:eq(' + index + ')').html(parseInt($('.zancount:eq(' + index + ')').html()) - 1)
+                    $('.zancount:eq(' + index + ')').css('color', 'white')
+                }
+            })
         }
-    });
-
-     $(document).on("click",".zhuanfa_icon",function () {
-        let index = $('.zhuanfa_icon').index($(this));
-        let pic = $('.pic_id:eq(' + index + ')').val();
+    })
+    $(document).on("click", ".zhuanfa_icon", function () {
+        let index = $('.zhuanfa_icon').index($(this))
+        let pic = $('.pic_id:eq(' + index + ')').val()
         if ($(this).attr('src') === "/img/faxian/favor_icon.png") {
-            $(this).attr('src', "/img/faxian/favor_icon.png");
-            $(location).attr('href', '/favor?Picture_id='+pic);
+            if ($('#isLogin').val() === "false") {
+                alert('登录后才能进行收藏!')
+                return
+            }
+            $(this).attr('src', "/img/faxian/favor_icon.png")
+            $(location).attr('href', '/favor?pictureId=' + pic)
         } else {
-            $(this).attr('src', "/img/faxian/favor_icon.png");
-            $.get("/favor/delFavor?Picture_id=" + pic,(result)=>{
-            });
+            $(this).attr('src', "/img/faxian/favor_icon.png")
+            $.get("/favor/delFavor?pictureId=" + pic, (result) => {
+            })
         }
-    });
+    })
 </script>

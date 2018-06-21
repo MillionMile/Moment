@@ -1,3 +1,5 @@
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/underscore-noflect.js"></script>
 <link rel="stylesheet" href="/css/sighup.css">
 <link rel="stylesheet" href="/css/login.css">
 <link rel="stylesheet" href="/css/authority.css">
@@ -7,61 +9,62 @@
     <input type="hidden" value="<%=locals.isLogin%>" id="isLogin">
     <nav id="nav_box">
         <!--导航栏-->
-        <a href="#" onclick="nav_side1()">
+        <!-- <a href="#" onclick="nav_side1()">
             <span>
                 <img src="/img/icon/折叠.png">
             </span>
-        </a>
+        </a> -->
         <span>
             <a href="/">
                 <p>首页</p>
             </a>
         </span>
         <span>
-            <a href="#">
+            <a href="/picturesList/discover">
                 <p>发现</p>
             </a>
         </span>
         <span>
-            <a href="#">
+            <a href="/picturesList/freshNew">
                 <p>最新</p>
             </a>
         </span>
         <span>
-            <a href="/picturesList/Trending-Pic">
+            <a href="/picturesList/trendingPic">
                 <p>热门</p>
             </a>
         </span>
-        <span>
-            <a href="#">
+        <!-- <span>
+            <a href="/picturesList/rank">
                 <p>今日排行</p>
             </a>
-        </span>
-        <span>
-            <a href="/picturesList/FavorFolders">
-                <p>关于我们</p>
-            </a>
-        </span>
-
+        </span> -->
         <%if(locals.isLogin==true){%>
-            <a href="/picturesList/personalCenter">
-            <div id="rightname">用户名</div>
-            <div id="justlogin">
-                <img src="" alt="">
-            </div>
-        </a>
-                <%}else {%>
-                    <a href="#">
-                        <div id="signup" onclick="nav_side2()">
-                            <p>注册</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div id="login" onclick="nav_side1()">
-                            <p>登陆</p>
-                        </div>
-                    </a>
-                    <%}%>
+            <span>
+                <a href="/picturesList/favorFolders">
+                    <p>个人收藏</p>
+                </a>
+            </span>
+
+            <a href="/user/loginout" id="loginout">注销</a>
+            <a href="/user/personalCenter">
+                <div id="rightname">用户名</div>
+                <div id="justlogin">
+                    <img src="" alt="">
+                </div>
+            </a>
+            <%}else {%>
+                <a href="#">
+                    <div id="signup" onclick="nav_side2()">
+                        <p>注册</p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div id="login" onclick="nav_side1()">
+                        <p>登陆</p>
+                    </div>
+                </a>
+                <%}%>
     </nav>
 
     <div id="side_login">
@@ -81,35 +84,6 @@
             <input class="tijiao" type="submit" value="提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交">
             <input class="wangjimima" type="button" value="忘记密码">
         </form>
-        <br/>
-        <div>
-            <span>
-                <p style="width: 500px;">更多登陆方式</p>
-            </span>
-        </div>
-        <div id="line"></div>
-        <div style="width: 500px;">
-            <div class="yuankuang">
-                <a href="#">
-                    <img src="/img/icon/微信.png">
-                </a>
-            </div>
-            <div class="yuankuang">
-                <a href="#">
-                    <img src="/img/icon/QQ.png">
-                </a>
-            </div>
-            <div class="yuankuang">
-                <a href="#">
-                    <img src="/img/icon/微博.png">
-                </a>
-            </div>
-            <div class="yuankuang">
-                <a href="#">
-                    <img src="/img/icon/推特.png">
-                </a>
-            </div>
-        </div>
     </div>
 
     <div id="side_signup">
@@ -125,7 +99,7 @@
         </div>
         <form action="/user/createUser" method="post">
             <input type="text" name="username" placeholder="请填写您的用户名">
-            <input type="text" placeholder="请填写您的邮箱">
+            <!-- <input type="text" placeholder="请填写您的邮箱"> -->
             <input type="password" name="password" placeholder="请填写您的密码">
             <input type="password" name="confirm" placeholder="请再次填写您的密码">
             <input class="tijiao" type="submit" value="注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;册">
