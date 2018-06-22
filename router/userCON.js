@@ -3,22 +3,21 @@ const userDao = require('../dao/userDao')
 const multer = require('multer')
 const storage = multer.memoryStorage()
 const upload = multer({ storage })
-const path = require('path')
 
 module.exports = function () {
 	const router = Router()
 	router.post('/createUser', (req, res) => {
 		const { username, password, confirm } = req.body
 		if (password !== confirm) {
-			res.send('两次输入的密码不一样')
+			res.send('<script>alert("两次输入的密码不一样!")history.back()</script>')
 		}
-
 		userDao.createUser(username, password, (err, user) => {
 			if (err) {
-				return res.send({ result: -1 })
+				res.send('<script>alert("用户已存在，注册失败！")history.back()</script>')
+				return
 			}
 
-			res.send({ result: 1 })
+			res.redirect('/')
 
 		})
 	})
@@ -27,11 +26,11 @@ module.exports = function () {
 		const { username, password } = req.body
 		userDao.findUserByUsername(username, (err, user) => {
 			if (err || !user) {
-				res.send('<script>alert("用户不存在！");history.back();</script>')
+				res.send('<script>alert("用户不存在！")history.back()</script>')
 				return
 			}
 			if (user.password !== password) {
-				res.send('<script>alert("密码错误，登录失败！");history.back();</script>')
+				res.send('<script>alert("密码错误，登录失败！")history.back()</script>')
 				return
 			}
 			req.session.regenerate((err) => {
@@ -43,31 +42,50 @@ module.exports = function () {
 		})
 	})
 
-	router.post('/avatar', upload.single('avatar'), (req, res) => {
-		const base64Url = req.file.buffer.toString('base64')
-		const formattedUrl = 'data:' + req.file.mimetype + ';base64,' + base64Url
+	router.get('/logout',(req,res)=>{
+		req.session.destroy();
+		res.redirect('/')
+	})
 
+	router.post('/avatar', upload.single('avatar'), (req, res) => {
+		const { password, sex, phone } = (req.body)
+		if (req.file) {
+			const base64Url = req.file.buffer.toString('base64')
+			const formattedUrl = 'data:' + req.file.mimetype + ';base64,' + base64Url
+		}
 		userDao.findUserById(req.session.user_id, (err, user) => {
 			if (err || !user) return res.send({ result: -1 })
-
-			user.avatar = formattedUrl
+			if (req.file) {
+				user.avatar = formattedUrl
+			}
+			if (password && password != "") {
+				user.password = password
+			}
+			user.sex = sex
+			user.phone = phone
 			user.save(err => {
 				if (err) return res.send({ result: -1 })
-				res.send({ result: 1 })
+				res.redirect('/user/personalCenter');
 			})
 		})
-
 	})
 
 	router.get('/avatar', (req, res) => {
 		userDao.findUserById(req.session.user_id, (err, user) => {
-			if (err) return res.send({ result: -1 })
-			res.send({ result: user.avatar })
+			if (err) return res.send({isLogin: !!req.session["user_id"] })
+			res.send({
+				username:user.username,
+				avatar: user.avatar, 
+				isLogin: !!req.session["user_id"]
+			})
 		})
 	})
 
 	router.get('/personalCenter', (req, res) => {
-		res.render("personalCenter", { isLogin: !!req.session["user_id"] })
+		userDao.findById(req.session.user_id,(err,user)=>{
+			res.render("personalCenter", {user:user})	
+		})
 	})
+
 	return router
 }

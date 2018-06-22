@@ -1,6 +1,5 @@
 <div id="picturgroup">
     <div id="picturgroup_div" class="pictures">
-
     </div>
 </div>
 
@@ -18,7 +17,7 @@
                         </span>
                     </div>
                     <a href="/commentsList?pictureId={{=id}}">
-                        <img src="/img/faxian/samplepicture.png" class="picture" />
+                        <img src="{{=path}}" class="picture" />
                     </a>
                     <a href="/commentsList?pictureId={{=id}}" class="picture_tag">
                         By 作者
@@ -73,6 +72,7 @@
                 let html = compiled({
                     id: result[i]._id,
                     title: result[i].title,
+                    path:result[i].path,
                     voteCount: result[i].voteCount,
                     isVote: result[i].isVote,
                     isFavor: result[i].isFavor,

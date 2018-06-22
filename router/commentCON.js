@@ -1,5 +1,6 @@
 const operationDao = require("../dao/operationDao.js")
 const userDao = require("../dao/userDao.js")
+const pictureDao=require("../dao/pictureDao.js")
 const app = require('express')
 
 module.exports = function () {
@@ -27,16 +28,18 @@ module.exports = function () {
                 operationDao.OperationsCount({ user_id: req.session['user_id'] }, req.query.pictureId,
                     { vote: { $exists: true } }, (err, result) => {
                     operationDao.UsersOfVote(req.query.pictureId, (err, dataCount)=> {
-                        isVote = result
-                        voteCount=dataCount
-                        res.render("commentsList",
-                            {
-                                pictureId: req.query.pictureId,
-                                isLogin: !!req.session["user_id"],
-                                username: req.session["username"],
-                                isVote: isVote,
-                                voteCount: voteCount
-                            })
+                        pictureDao.findById(req.query.pictureId,(err,picture)=>{
+                            isVote = result
+                            voteCount=dataCount
+                            res.render("commentsList",
+                                {
+                                    pictureId: req.query.pictureId,
+                                    username: req.session["username"],
+                                    isVote: isVote,
+                                    voteCount: voteCount,
+                                    picture: picture
+                                })
+                        });
                     })
                 })
     })

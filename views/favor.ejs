@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>图片收藏</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <script src="js/jquery-1.11.3.min.js"></script>
     <style type="text/css">
         #success,
         #fail,
@@ -28,11 +27,11 @@
             <div class="row">
                 <h2>
                     图片收藏操作</h2>
-                <img src="/img/main/banner.jpg" alt="" style="width:700px;">
+                <img src="<%=picture.path%>" alt="" style="width:700px;">
             </div>
             <div class="row">
                 <span>
-                    <%=pictureId%>
+                   <h3 style="color: rebeccapurple;">图片ID:<%=pictureId%></h3>
                 </span>
             </div>
             <div class="row">
@@ -87,7 +86,7 @@
             //模板函数
             let compiled = _.template($("#template").html());
             //清空全部留言中的所有节点
-            $("#isFolder").html("<select name=\"folder_id\" class=\"form-control\" id=\"folders\"></select> " +
+            $("#isFolder").html("<select name=\"folderId\" class=\"form-control\" id=\"folders\"></select> " +
                 "<button id=\"favor\" type=\"button\" class=\"btn btn-success\" onClick=\"doFavor();\">收藏</button>");
             $("#folders").html("");
             let le = result.length;
@@ -137,7 +136,7 @@
         $("#favor-fail").hide();
         $("#favor-success").hide();
         $.post("/favor/doFavor", {
-            "folder_id": $("#folders").val(),
+            "folderId": $("#folders").val(),
             "pictureId": "<%=pictureId%>",
         }, (result) => {
             if (result.result === -1) {

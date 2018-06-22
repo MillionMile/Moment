@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>收藏图片</title>
-    <link rel="stylesheet" type="text/css" href="../css/share.css" />
+    <link rel="stylesheet" type="text/css" href="/css/share.css" />
     <style type="text/css">
         #bigicon {
             width: 1075px;
@@ -19,7 +19,7 @@
         <div id="main">
             <div id="bigicon">
                 <center>
-                    <img src="../img/remen/remen.png">
+                    <img src="/img/remen/remen.png">
                 </center>
             </div>
             <div id="picturgroup" class="folders">
@@ -31,10 +31,10 @@
 <script type="text/template" id="template">
     <div class="fangxiandiv">
             <div class="fangxiandiv_div">
-                <a  href="/commentsList?Picture_id={{=id}}">
-                    <img src="../img/faxian/samplepicture.png" class="picture" />
+                <a  href="/commentsList?pictureId={{=id}}">
+                    <img src="{{=path}}" class="picture" />
                 </a>
-                <a  href="/commentsList?Picture_id={{=id}}" class="picture_tag">
+                <a  href="/commentsList?pictureId={{=id}}" class="picture_tag">
                     {{= title}}
                 </a>
                 <div>
@@ -56,7 +56,7 @@
 
     //Ajax请求数据
     function getData() {
-        $.get("/picturesList/GetPicInFolder?folder_id=<%=folder_id%>", (result) => {
+        $.get("/picturesList/getPicInFolder?folderId=<%=folderId%>", (result) => {
             //模板函数
             let compiled = _.template($("#template").html());
             //清空全部留言中的所有节点
@@ -65,6 +65,7 @@
                 //数据绑定
                 let html = compiled({
                     title: result[i].picture.title,
+                    path :result[i].picture.path,
                     id: result[i].picture._id,
                 });
                 //DOM操作，添加节点
@@ -74,8 +75,8 @@
     }
 
     //Ajax删除文档
-    function deleteFavor(picture_id) {
-        $.get("/favor/delFavor?Picture_id=" + picture_id, (result) => {
+    function deleteFavor(pictureId) {
+        $.get("/favor/delFavor?pictureId=" + pictureId, (result) => {
             if (result.result === 1)
                 getData();
         });
