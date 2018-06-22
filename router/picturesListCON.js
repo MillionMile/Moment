@@ -57,17 +57,33 @@ module.exports = function () {
 
 	})
 
+	//在个人中心处删除图片
+	router.post('/removePic', (req, res) => {
+		const { id } = req.query
+		pictureDao.removePicture(id, (err) => {
+			if (err) {
+				console.log(err)
+				return res.send({ result: -1 })
+			}
+			operationDao.OperationsAllDeleteByPicture(id, (err) => {
+				if (err) {
+					console.log(err)
+					return res.send({ result: -1 })
+				}
+				res.send({ result: 1 })
+			})
+		})
+	})
+
 	// 更新图片描述
 	router.post('/updatePicAbstract', (req, res) => {
 		const { abstract, id } = req.body
-		
 		pictureDao.AbstractUpdate(id, abstract, (err) => {
 			if (err) {
 				console.log(err)
 				return res.send({ result: -1 })
 			}
-
-			res.send({ result: 1 })
+			res.redirect('/picturesList/pictureManage?pictureId='+id)
 		})
 	})
 
@@ -250,7 +266,13 @@ module.exports = function () {
     //仅链接页面，未添加功能
         res.render("pictureManage");
     })
-
+    
+    router.get('/pictureManage', (req, res) => {
+	pictureDao.findOne({ _id: req.query.pictureId }, (err, picture) => {
+	    console.log(picture);
+	    res.render("pictureManage", picture);
+	})
+    })
 
 	return router;
 };
