@@ -34,7 +34,7 @@ module.exports = function () {
 				return
 			}
 			req.session.regenerate((err) => {
-				if (err) res.send({ result: -1 })
+				if (err) res.send('<script>alert("登录失败！")history.back()</script>')
 				const { username, _id: user_id } = user
 				Object.assign(req.session, { username, user_id })
 				res.redirect('/')
@@ -48,19 +48,26 @@ module.exports = function () {
 	})
 
 	router.post('/avatar', upload.single('avatar'), (req, res) => {
-		const base64Url = req.file.buffer.toString('base64')
-		const formattedUrl = 'data:' + req.file.mimetype + ';base64,' + base64Url
-
+		const { password, sex, phone } = (req.body)
+		if (req.file) {
+			const base64Url = req.file.buffer.toString('base64')
+			const formattedUrl = 'data:' + req.file.mimetype + ';base64,' + base64Url
+		}
 		userDao.findUserById(req.session.user_id, (err, user) => {
 			if (err || !user) return res.send({ result: -1 })
-
-			user.avatar = formattedUrl
+			if (req.file) {
+				user.avatar = formattedUrl
+			}
+			if (password && password != "") {
+				user.password = password
+			}
+			user.sex = sex
+			user.phone = phone
 			user.save(err => {
 				if (err) return res.send({ result: -1 })
-				res.send({ result: 1 })
+				res.redirect('/user/personalCenter');
 			})
 		})
-
 	})
 
 	router.get('/avatar', (req, res) => {
