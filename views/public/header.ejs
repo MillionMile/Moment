@@ -92,7 +92,11 @@
     <a href="/user/logout" id="loginout">注销</a>
     <a href="/user/personalCenter">
         <div id="rightname">用户名</div>
+            {{if(avatar){ }}
             <img id="justlogin" src="{{=avatar}}" alt="" >
+            {{ }else{ }}
+                <img id="justlogin" style="background:white" src="/img/icon/姓名用户名(未注册).png" alt="" >
+            {{ } }}
     </a>
     {{ }else { }}
         <a href="#">
