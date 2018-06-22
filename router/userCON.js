@@ -66,7 +66,11 @@ module.exports = function () {
 	router.get('/avatar', (req, res) => {
 		userDao.findUserById(req.session.user_id, (err, user) => {
 			if (err) return res.send({isLogin: !!req.session["user_id"] })
-			res.send({ avatar: user.avatar,isLogin: !!req.session["user_id"]})
+			res.send({
+				username:user.username,
+				avatar: user.avatar, 
+				isLogin: !!req.session["user_id"]
+			})
 		})
 	})
 

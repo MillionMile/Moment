@@ -13,16 +13,16 @@ const PictureSchema = new Schema({
 //静态方法
 //1.根据图片_id修改图片描述
 PictureSchema.statics.AbstractUpdate=function(pictureId,update,cb){
-    this.update({_id:pictureId},{"$set":{abstract:update}},cb)
+    return this.update({_id:pictureId},{"$set":{abstract:update}},cb)
 }
 //2.根据tag和abstract实现模糊查询
 PictureSchema.statics.FindByTagNAbstract=function(like,cb){
-    this.find({ $or: [{ title: { $regex: like } }, { tag: { $regex: like } }, { abstract: { $regex: like } }] }, cb)
+    return this.find({ $or: [{ title: { $regex: like } }, { tag: { $regex: like } }, { abstract: { $regex: like } }] }, cb)
 
 }
 //3.遍历所有图片
 PictureSchema.statics.Pictures = function (cb) {
-    this.find(cb)
+    return this.find(cb)
 }
 
 // 4.删除某个图片

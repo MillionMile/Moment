@@ -91,7 +91,7 @@
     </span>
     <a href="/user/logout" id="loginout">注销</a>
     <a href="/user/personalCenter">
-        <div id="rightname">用户名</div>
+        <div id="rightname">{{=username}}</div>
             <img id="justlogin" src="{{=avatar}}" alt="" >
     </a>
     {{ }else { }}
@@ -116,8 +116,8 @@
                 //数据绑定
                 let html = compiled({
                     isLogin: result.isLogin,
-                    avatar: result.avatar
-                
+                    avatar: result.avatar,
+                    username:result.username
                 })
                 $(".userAvater").append($(html))
         })

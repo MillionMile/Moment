@@ -71,20 +71,6 @@ module.exports = function () {
 		})
 	})
 
-	// 获取图片详情
-	router.get('/getPicDetail', (req, res) => {
-		const { id } = req.query
-		pictureDao.findOne({ _id: id }, (err, picture) => {
-			if (err) {
-				console.log(err)
-				return res.send({ result: -1 })
-			}
-
-			res.send({ result: picture })
-
-		})
-	})
-
 	// 获取个人的图片列表
 	router.get('/getPicList', (req, res) => {
 
@@ -118,17 +104,43 @@ module.exports = function () {
 				console.log(err)
 				return res.send({ result: -1 })
 			}
-
+		
 			operations = await Promise.all(operations.map(operation => {
 				return operation
 					.populate({
-						path: 'picture'
+						path: 'picture',select:'title'
+					})
+					.populate({
+						path: 'user_id',select:'username'
 					})
 					.execPopulate()
 			}))
 
+			operations =  await Promise.all(operations.map(async operation => {
+				let isFavor=await operationDao.OperationsCount(
+					{user_id:req.session['user_id']},
+					operation.picture._id,
+					{favor:{$exists:true}})
+
+				let isVote=await operationDao.OperationsCount(
+					{user_id:req.session['user_id']},
+					operation.picture._id,
+					{vote:{$exists:true}})
+			
+				let voteCount=await operationDao.OperationsCount(
+					{},
+					operation.picture._id,
+					{vote:{$exists:true}})
+				
+				operation._doc.isFavor=isFavor
+				operation._doc.isFavor=isVote
+				operation._doc.voteCount=voteCount
+							
+				return operation
+			}))
+
 			const pictures = operations.map(operation => {
-				return operation.picture
+				return operation
 			})
 
 			res.send({ result: pictures })
