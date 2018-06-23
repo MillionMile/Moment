@@ -51,7 +51,7 @@ module.exports = function () {
 		const { password, sex, phone } = (req.body)
 		if (req.file) {
 			const base64Url = req.file.buffer.toString('base64')
-			const formattedUrl = 'data:' + req.file.mimetype + ';base64,' + base64Url
+			var formattedUrl = 'data:' + req.file.mimetype + ';base64,' + base64Url
 		}
 		userDao.findUserById(req.session.user_id, (err, user) => {
 			if (err || !user) return res.send({ result: -1 })
@@ -82,9 +82,12 @@ module.exports = function () {
 	})
 
 	router.get('/personalCenter', (req, res) => {
+		if(!!req.session.user_id)
 		userDao.findById(req.session.user_id,(err,user)=>{
 			res.render("personalCenter", {user:user})	
 		})
+		else
+		res.redirect("/")
 	})
 
 	return router

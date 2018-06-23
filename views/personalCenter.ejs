@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="../CSS/share.css" />
-	<link rel="stylesheet" type="text/css" href="../CSS/personalCenter.css" />
-	<link rel="stylesheet" href="../CSS/authority.css">
-	<link rel="stylesheet" href="../CSS/login.css">
-	<link rel="stylesheet" href="../CSS/sighup.css">
-	<link rel="stylesheet" href="../css/bootstrap.min.css" />
-	<script src="../JS/side.js"></script>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../CSS/share.css" />
+		<link rel="stylesheet" type="text/css" href="../CSS/personalCenter.css"/>
+		<link rel="stylesheet" href="../CSS/authority.css">
+		<link rel="stylesheet" href="../CSS/login.css">
+		<link rel="stylesheet" href="../CSS/sighup.css">
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../JS/side.js"></script>
+	</head>
 <style>
 	.fangxiandiv_div {
 		background: none;
@@ -156,7 +156,7 @@
 	})
 	getData();
 	//Ajax请求数据
-	function getData(url = "/picturesList/getTrendingPic", json = {}) {
+	function getData(url = "/picturesList/getPicList", json = {}) {
 		$.get(url, json, (result) => {
 			console.log(result)
 			if (!result) {
@@ -170,12 +170,10 @@
 			for (let i = 0; i < result.length; i++) {
 				//数据绑定
 				let html = compiled({
-					id: result[i]._id,
-					title: result[i].title,
-					path: result[i].path,
+					id: result[i].picture._id,
+					title: result[i].picture.title,
+					path: result[i].picture.path,
 					voteCount: result[i].voteCount,
-					isVote: result[i].isVote,
-					isFavor: result[i].isFavor,
 				})
 				//DOM操作，添加节点
 				$("#tupianguanlifaxiandiv").append($(html))
