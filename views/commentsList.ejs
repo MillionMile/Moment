@@ -85,7 +85,11 @@
                                     <%}%>
                     </a>
                     <div style="float: right;margin-top:-1em;">
+                        <%if(user.user_id.avatar){%>
                         <img src="<%=user.user_id.avatar%>" class="user_icon" style="display:inline-block;" />
+                        <%}else{%>
+                        <img src="/img/icon/姓名用户名(未注册).png"  class="user_icon" style="display:inline-block;background:white"/>
+                        <%}%>
                         <span id="user_id_username">By：
                             <%=user.user_id.username%>
                         </span>
@@ -129,7 +133,12 @@
 
                             <%for(var i=0;i<voteCount.length;i++){%>
                                 <a href="#" style="display: inline-block;text-decoration: none">
+                                    {{ if(voteCount[i]['user_id']['avatar']){ }}
                                     <img src="<%=voteCount[i]['user_id']['avatar']%>" class="user_icon_vote" />
+                                    {{ else{ }}
+                                    <img src="/img/icon/姓名用户名(未注册).png" class="user_icon_vote" />
+                                    {{ } }}
+
                                     <br>
                                     <span>
                                         <%=voteCount[i]['user_id']['username']%>

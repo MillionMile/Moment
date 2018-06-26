@@ -125,3 +125,13 @@ body {
 	background:none !important;
 }
 
+.picture{
+	width: auto !important;
+	
+}
+.pictureA{
+	display:inline-block;
+	width:250px;
+	height:250px;
+	overflow:hidden;
+}
