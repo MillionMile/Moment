@@ -68,7 +68,7 @@
 							<button class="xin_icon left_top">编辑</button>
 						</a>
 						<a href="/commentsList?pictureId={{=id}}" class="pictureA">
-							<img src="{{=path}}" class="picture" />
+							<img src="{{=path}}" class="picture picturei" />
 						</a>
 						<button class="picture_tag right_bottom delPicBtn">删除</button>
 						<p class="favorcount">
@@ -105,8 +105,7 @@
 						//DOM操作，添加节点
 						$("#tupianguanlifaxiandiv").append($(html))
 					}
-					$("#tupianguanlifaxiandiv").append($("<br><br><br><center><div><a href=\"#\"><img src=\"/img/faxian/shuaxin.png\" />\n" +
-						"</a></div> </center>"))
+					$("#tupianguanlifaxiandiv").append($("<br><br><br>"))
 				})
 			}
 

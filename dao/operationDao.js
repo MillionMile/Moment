@@ -9,7 +9,7 @@ const commentDao=require("./commentDao")
 const OperationSchema=new Schema({
     user_id   :{type:Schema.ObjectId , ref: 'User' },
     picture   :{type:Schema.ObjectId , ref: 'Picture'},
-    date      :{type:Date,default:Date.now()},
+    date      :{type:Date,default:Date.now},
     issue     : issueDao.issueSchema,
     favor     : favorDao.favorSchema,
     vote      : voteDao.voteSchema,
@@ -54,7 +54,7 @@ OperationSchema.statics.PicturesOfFavor=function (user_id,folderId,cb) {
 //8.遍历某图所有评论
 OperationSchema.statics.CommentsOfPicture=function (pictureId,cb) {
     return this.find({$and:[{picture:pictureId},{comment:{$exists:true}}]},{user_id:1,comment:1,date:1})
-    .populate('user_id').sort({date:-1}).exec(cb)
+    .populate('user_id').sort({date:1}).exec(cb)
 }
 //9.删除某收藏夹对应的图片所有收藏操作
 OperationSchema.statics.FavorsAllDeleteByFolder=function (folderId,cb) {

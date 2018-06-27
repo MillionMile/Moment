@@ -9,14 +9,14 @@ module.exports = function () {
 	router.post('/createUser', (req, res) => {
 		const { username, password, confirm } = req.body
 		if (password !== confirm) {
-			res.send('<script>alert("两次输入的密码不一样!")history.back()</script>')
+			res.send('<script>alert("两次输入的密码不一样!");history.back();</script>')
+			return
 		}
 		userDao.createUser(username, password, (err, user) => {
 			if (err) {
-				res.send('<script>alert("用户已存在，注册失败！")history.back()</script>')
+				res.send('<script>alert("用户已存在，注册用户失败！");history.back();</script>')
 				return
 			}
-
 			res.redirect('/')
 
 		})
@@ -26,15 +26,20 @@ module.exports = function () {
 		const { username, password } = req.body
 		userDao.findUserByUsername(username, (err, user) => {
 			if (err || !user) {
-				res.send('<script>alert("用户不存在！")history.back()</script>')
+				console.log('用户不存在');
+				res.send('<script>alert("用户不存在！");history.back();</script>')
 				return
 			}
 			if (user.password !== password) {
-				res.send('<script>alert("密码错误，登录失败！")history.back()</script>')
+				console.log('密码错误');
+				res.send('<script>alert("密码错误，登录失败！");history.back();</script>')
 				return
 			}
 			req.session.regenerate((err) => {
-				if (err) res.send({ result: -1 })
+				if (err) {
+					res.send('<script>alert("密码错误，登录失败！");history.back();</script>')
+					return
+				}
 				const { username, _id: user_id } = user
 				Object.assign(req.session, { username, user_id })
 				res.redirect('/')
@@ -42,7 +47,7 @@ module.exports = function () {
 		})
 	})
 
-	router.get('/logout',(req,res)=>{
+	router.get('/logout', (req, res) => {
 		req.session.destroy();
 		res.redirect('/')
 	})
@@ -72,22 +77,22 @@ module.exports = function () {
 
 	router.get('/avatar', (req, res) => {
 		userDao.findUserById(req.session.user_id, (err, user) => {
-			if (err) return res.send({isLogin: !!req.session["user_id"] })
+			if (err) return res.send({ isLogin: !!req.session["user_id"] })
 			res.send({
-				username:user.username,
-				avatar: user.avatar, 
+				username: user.username,
+				avatar: user.avatar,
 				isLogin: !!req.session["user_id"]
 			})
 		})
 	})
 
 	router.get('/personalCenter', (req, res) => {
-		if(!!req.session.user_id)
-		userDao.findById(req.session.user_id,(err,user)=>{
-			res.render("personalCenter", {user:user})	
-		})
+		if (!!req.session.user_id)
+			userDao.findById(req.session.user_id, (err, user) => {
+				res.render("personalCenter", { user: user })
+			})
 		else
-		res.redirect("/")
+			res.redirect("/")
 	})
 
 	return router

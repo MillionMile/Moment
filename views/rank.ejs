@@ -54,10 +54,12 @@
                 <a class="rank_xin_icon">
                     {{ if(isVote>=1) { }}
                         <img src="/img/icon/爱心变化.png"  />
+                        <span style="color:rgb(229,28,35)">{{=voteCount}}</span>
                         {{ }else { }}
                         <img src="/img/icon/爱心.png"/>
+                        <span style="color:white">{{=voteCount}}</span>
                         {{ } }}
-                        <span>{{=voteCount}}</span>
+                        
                 </a>
                 <a href="/commentsList?pictureId={{=id}}" title="{{=title}}">
                     <img src="{{=path}}" class="big_picture" />
@@ -78,7 +80,8 @@
                     let compiled = _.template($("#template").html())
                     //清空全部留言中的所有节点
                     $("#rankPicture").html("")
-                    for (let i = 0; i < result.length; i++) {
+                    var len=result.length>9?10:result.length
+                    for (let i = 0; i < len; i++) {
                         //数据绑定
                         let html = compiled({
                             id: result[i]._id,
@@ -107,6 +110,7 @@
                     $.get("/vote/addVote?pictureId=" + pic, (result) => {
                         if (result.result === 1) {
                             $('.rank_xin_icon:eq(' + index + ')>span').html(parseInt($('.rank_xin_icon:eq(' + index + ')>span').html()) + 1)
+                            $('.rank_xin_icon:eq(' + index + ')>span').css('color','red')
                         }
                     })
                 } else {
@@ -114,6 +118,7 @@
                     $.get("/vote/delVote?pictureId=" + pic, (result) => {
                         if (result.result === 1) {
                             $('.rank_xin_icon:eq(' + index + ')>span').html(parseInt($('.rank_xin_icon:eq(' + index + ')>span').html()) - 1)
+                            $('.rank_xin_icon:eq(' + index + ')>span').css('color','white')
                         }
                     })
                 }
